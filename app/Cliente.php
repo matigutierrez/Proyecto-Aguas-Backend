@@ -10,7 +10,7 @@ class Cliente extends Model
 
     protected $primaryKey = "id";
 
-    protected $fillable = ['nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia'];
+    protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia'];
 
     public $timestamps = false;
 }

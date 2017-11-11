@@ -22,6 +22,7 @@ class CreateClienteTable extends Migration
             $table->string('telefono',20);
             $table->string('email',40);
             $table->string('residencia',50);
+            $table->unique('rut_cliente');
         });
     }
 

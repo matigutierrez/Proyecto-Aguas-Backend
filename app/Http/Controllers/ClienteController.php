@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Cliente;
 use Illuminate\Http\Request;
+
+use App\Cliente;
 
 class ClienteController extends Controller
 {
@@ -14,7 +15,8 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        return Cliente::all();    }
+        return Cliente::all();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -35,16 +37,16 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
         Cliente::create($request->all());
-        return ['created'=>true];
+        return ['created' => true];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cliente  $cliente
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Cliente $cliente)
+    public function show($id)
     {
         return Cliente::find($id);
     }
@@ -52,10 +54,10 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cliente  $cliente
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
         //
     }
@@ -64,25 +66,26 @@ class ClienteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cliente  $cliente
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $id)
     {
         $cliente = Cliente::find($id);
         $cliente->update($request->all());
-        return ['update'=>true];
+        return ['update' => true];
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cliente  $cliente
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cliente $cliente)
+    public function destroy($id)
     {
         Cliente::destroy($id);
-        return ['deleted'=>true];
+        return['deleted' => true];
     }
+    
 }
