@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('cliente', 'ClienteController');
-Route::post('/buscar','ClienteController@buscar');
+
+Route::apiResource('usuario', 'UsuarioController');
+
+Route::apiResource('rol', 'RolController');
+//Route::post('/buscar','ClienteController@buscar');
