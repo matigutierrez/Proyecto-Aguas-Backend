@@ -16,10 +16,10 @@ class CreateUsuarioTable extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre_usu',20);
-            $table->string('pass_usu',40);
+            $table->string('pass_usu');
             $table->unique('nombre_usu');
-            $table->integer('cli_id')->unsigned();
-            $table->foreign('cli_id')->references('id')->on('cliente')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('cliente_id')->unsigned();
+            $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

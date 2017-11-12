@@ -14,6 +14,7 @@ class CreateRegistroMensualClienteTable extends Migration
     public function up()
     {
         Schema::create('registro_mensual', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('year');
             $table->timestamp('fecha_registro_consumo');
             $table->integer('lectura');
@@ -25,7 +26,6 @@ class CreateRegistroMensualClienteTable extends Migration
             $table->integer('alcantarillado');
             $table->integer('vivienda_id')->unsigned();
             $table->integer('mes_id')->unsigned();
-            $table->primary(['year', 'vivienda_id', 'mes_id']);
             $table->foreign('vivienda_id')->references('id')->on('vivienda')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('mes_id')->references('id')->on('mes')->onDelete('cascade')->onUpdate('cascade');
         });
