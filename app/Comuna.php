@@ -16,5 +16,9 @@ class Comuna extends Model
     	return $this->belongsTo('App\Region');
     }
 
+    public function vivienda() {
+    	return $this->hasMany('App\Vivienda');
+    } 
+
     public $timestamps = false;
 }
