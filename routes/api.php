@@ -29,4 +29,6 @@ Route::apiResource('comuna', 'ComunaController');
 
 Route::apiResource('estado', 'EstadoController');
 
+Route::apiResource('subsidio', 'SubsidioController');
+
 //Route::post('/buscar','ClienteController@buscar');
