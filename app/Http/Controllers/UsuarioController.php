@@ -73,7 +73,7 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::find($id);
         $usuario->update($request->all());
-        return ['update' => true];
+        return ['update' => true]; 
     }
 
     /**

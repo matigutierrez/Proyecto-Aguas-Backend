@@ -18,7 +18,7 @@ class Usuario extends Model
     	return $this->belongsTo('App\Cliente');
     }
 
-    public function usuario_rol() {
+    public function rol() {
     	return $this->hasMany('App\Rol_Usuario');
     }
 
