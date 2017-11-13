@@ -24,4 +24,6 @@ Route::apiResource('usuario', 'UsuarioController');
 Route::apiResource('rol', 'RolController');
 
 Route::apiResource('region', 'RegionController');
+
+Route::apiResource('comuna', 'ComunaController');
 //Route::post('/buscar','ClienteController@buscar');

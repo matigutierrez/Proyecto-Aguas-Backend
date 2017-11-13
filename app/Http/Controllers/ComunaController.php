@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Region;
+use App\Comuna;
 
-class RegionController extends Controller
+class ComunaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RegionController extends Controller
      */
     public function index()
     {
-        return Region::all();
+        return Comuna::all();
     }
 
     /**
@@ -36,7 +36,7 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        Region::create($request->all());
+        Comuna::create($request->all());
         return ['created' => true];
     }
 
@@ -48,7 +48,7 @@ class RegionController extends Controller
      */
     public function show($id)
     {
-        return Region::find($id);
+        return Comuna::find($id);
     }
 
     /**
@@ -71,8 +71,8 @@ class RegionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $region = Region::find($id);
-        $region->update($request->all());
+        $comuna = Comuna::find($id);
+        $comuna->update($request->all());
         return ['update' => true];
     }
 
@@ -84,7 +84,7 @@ class RegionController extends Controller
      */
     public function destroy($id)
     {
-        Region::destroy($id);
+        Comuna::destroy($id);
         return['deleted' => true];
     }
 }
