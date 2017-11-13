@@ -10,7 +10,7 @@ class Cliente extends Model
 
     protected $primaryKey = "id";
 
-    protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia'];
+    protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia']; 
 
     public function usuario() {
     	return $this->hasOne('App\Usuario');
