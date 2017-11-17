@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Cliente;
 
+use DB;
+
 class ClienteController extends Controller
 {
     /**
@@ -86,6 +88,15 @@ class ClienteController extends Controller
     {
         Cliente::destroy($id);
         return['deleted' => true];
+    }
+
+    public function buscar() {
+        $cliente = DB::table('cliente')->get();
+        return $cliente;
+    }
+
+    public function busquedaav() {
+        return Cliente::busqueda();
     }
     
 }

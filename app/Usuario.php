@@ -3,23 +3,27 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'usuario';
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['nombre_usu', 'pass_usu', 'cliente_id'];
+    protected $fillable = ['nombre_usu', 'password', 'cliente_id'];
 
-    protected $hidden = ['pass_usu', 'remember_token',];
+    protected $hidden = ['password', 'remember_token',];
 
     public function cliente() {
-    	return $this->belongsTo('App\Cliente');
+      return $this->belongsTo('App\Cliente');
     }
 
-    public function rol() {
-    	return $this->hasMany('App\Rol_Usuario');
+    public function roles() {
+      return $this->hasMany('App\Rol_Usuario');
     }
 
     public $timestamps = false;

@@ -13,15 +13,15 @@ class Vivienda extends Model
     protected $fillable = ['direccion', 'estado_id', 'comuna_id', 'subsidio_id'];
 
     public function estado(){
-    	return $this->belongsTo('App\Estado');
+      return $this->belongsTo('App\Estado');
     }
 
     public function comuna() {
-    	return $this->belongsTo('App\Comuna');
+      return $this->belongsTo('App\Comuna');
     }
 
     public function subsidio() {
-    	return $this->belongsTo('App\Subsidio');
+      return $this->belongsTo('App\Subsidio');
     }
 
     public $timestamps = false;

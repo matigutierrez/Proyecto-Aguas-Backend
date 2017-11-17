@@ -13,24 +13,28 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::group(['middleware' => ['jwt.auth']], function () {
+	Route::apiResource('cliente', 'ClienteController');
+
+	Route::apiResource('usuario', 'UsuarioController');
+
+	Route::apiResource('rol', 'RolController');
+
+	Route::apiResource('region', 'RegionController');
+
+	Route::apiResource('comuna', 'ComunaController');
+
+	Route::apiResource('estado', 'EstadoController');
+
+	Route::apiResource('subsidio', 'SubsidioController');
+
+	Route::apiResource('vivienda', 'ViviendaController');
+
+	Route::post('buscar','ClienteController@buscar');
+
+	Route::post('busqueda','ClienteController@busquedaav');
 });
 
-Route::apiResource('cliente', 'ClienteController');
-
-Route::apiResource('usuario', 'UsuarioController');
-
-Route::apiResource('rol', 'RolController');
-
-Route::apiResource('region', 'RegionController');
-
-Route::apiResource('comuna', 'ComunaController');
-
-Route::apiResource('estado', 'EstadoController');
-
-Route::apiResource('subsidio', 'SubsidioController');
-
-Route::apiResource('vivienda', 'ViviendaController');
-
-//Route::post('/buscar','ClienteController@buscar');
+Route::post('login', 'AuthController@authenticate');
