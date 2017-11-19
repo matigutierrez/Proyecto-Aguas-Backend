@@ -12,7 +12,7 @@ class Estado extends Model
 
     protected $fillable = ['des_estado'];
 
-    public function vivienda() {
+    public function viviendas() {
     	return $this->hasMany('App\Vivienda');
     }
 

@@ -12,7 +12,7 @@ class Region extends Model
 
     protected $fillable = ['des_zona'];
 
-    public function comuna() {
+    public function comunas() {
     	return $this->hasMany('App\Comuna');
     }
 

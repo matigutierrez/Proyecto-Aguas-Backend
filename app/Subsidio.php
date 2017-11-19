@@ -12,7 +12,7 @@ class Subsidio extends Model
 
     protected $fillable = ['des_subsidio'];
 
-    public function vivienda() {
+    public function viviendas() {
     	return $this->hasMany('App\Vivienda');
     }
 

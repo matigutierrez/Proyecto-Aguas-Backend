@@ -12,7 +12,7 @@ class Rol extends Model
 
     protected $fillable = ['des_rol'];
 
-    public function usuario() {
+    public function usuarios() {
     	return $this->hasMany('App\Rol_Usuario');
     }
 
