@@ -18,6 +18,10 @@ class Cliente extends Model
     	return $this->hasOne('App\Usuario');
     }
 
+    public function viviendas() {
+        return $this->hasMany('App\ViviendaCliente');
+    }
+
     public static function busqueda() {
     	$cliente = DB::table('cliente')->select('nombre', 'email')->get();
     	return $cliente;

@@ -24,5 +24,9 @@ class Vivienda extends Model
       return $this->belongsTo('App\Subsidio');
     }
 
+    public function clientes() {
+      return $this->hasMany('App\ViviendaCliente');
+    }
+
     public $timestamps = false;
 }
