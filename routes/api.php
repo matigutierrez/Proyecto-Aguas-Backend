@@ -32,9 +32,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('vivienda', 'ViviendaController');
 
-	Route::post('buscar','ClienteController@buscar');
-
-	Route::post('busqueda','ClienteController@busquedaav');
+	Route::post('busqueda','ClienteController@busqueda');
 });
 
 Route::post('login', 'AuthController@authenticate');

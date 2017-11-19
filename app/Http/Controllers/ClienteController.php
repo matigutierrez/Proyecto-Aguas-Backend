@@ -90,12 +90,7 @@ class ClienteController extends Controller
         return['deleted' => true];
     }
 
-    public function buscar() {
-        $cliente = DB::table('cliente')->get();
-        return $cliente;
-    }
-
-    public function busquedaav() {
+    public function busqueda() {
         return Cliente::busqueda();
     }
     
