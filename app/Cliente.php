@@ -22,10 +22,5 @@ class Cliente extends Model
         return $this->hasMany('App\ViviendaCliente');
     }
 
-    public static function busqueda() {
-    	$cliente = DB::table('cliente')->select('nombre', 'email')->get();
-    	return $cliente;
-    }
-
     public $timestamps = false;
 }

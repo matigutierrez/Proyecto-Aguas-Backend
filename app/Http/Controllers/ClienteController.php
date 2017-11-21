@@ -8,6 +8,10 @@ use App\Cliente;
 
 use DB;
 
+use PDF;
+
+use View;
+
 class ClienteController extends Controller
 {
     /**
@@ -90,8 +94,16 @@ class ClienteController extends Controller
         return['deleted' => true];
     }
 
-    public function busqueda() {
-        return Cliente::busqueda();
+    public function busqueda() 
+    {
+        $cliente = DB::table('cliente')->select('nombre', 'email')->get();
+        return $cliente;
+    }
+
+    public function generarpdf()
+    {
+        $pdf = PDF::loadView('vista');
+        return $pdf->download('archivo.pdf');
     }
     
 }

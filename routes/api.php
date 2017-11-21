@@ -33,6 +33,10 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 	Route::apiResource('vivienda', 'ViviendaController');
 
 	Route::post('busqueda','ClienteController@busqueda');
+
+	Route::get('pdf','ClienteController@generarpdf');
+
 });
 
 Route::post('login', 'AuthController@authenticate');
+
