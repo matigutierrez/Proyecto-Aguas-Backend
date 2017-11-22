@@ -28,5 +28,9 @@ class Vivienda extends Model
       return $this->hasMany('App\ViviendaCliente');
     }
 
+    public function registrosMensuales() {
+      return $this->hasMany('App\RegistroMensual');
+    }
+
     public $timestamps = false;
 }
