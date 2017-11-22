@@ -13,11 +13,11 @@ class UsuarioTableSeeder extends Seeder
     public function run()
     {
         DB::table('usuario')->insert([
-				 
-					'nombre_usu' => 'Matias20',
-					'password' => bcrypt('1234'),
-					'cliente_id' => '1'
-					
-				]);
-    }
+         
+            'nombre_usu' => 'Matias20',
+            'password' => bcrypt('1234'),
+            'cliente_id' => '1'
+            
+        ]);
+}
 }
