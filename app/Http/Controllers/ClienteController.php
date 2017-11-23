@@ -102,8 +102,32 @@ class ClienteController extends Controller
 
     public function generarpdf()
     {
-        $pdf = PDF::loadView('vista');
-        return $pdf->download('archivo.pdf');
+        try {
+
+            $pdf = PDF::loadView('vista');
+            return $pdf->download('archivo.pdf');
+
+        }catch(\Exception $e) {
+
+            \Log::info('Error en la descarga del pdf'. $e);
+            return \Response::json('Error',500); 
+
+        }
+    }
+
+    public function obtenerId(Request $request)
+    {
+        try {
+
+            $idcliente = Cliente::with('id')->where('nombre', $request['nombre'])->first();
+            return \Response::json($idcliente, 200);
+
+        }catch(\Exception $e) {
+
+            \Log::info('Error no se encontro la Region'. $e);
+            return \Response::json('Error'.$e ,500); 
+
+        }
     }
     
 }

@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 
 
 Route::group(['middleware' => ['jwt.auth']], function () {
-	
+
 	Route::apiResource('cliente', 'ClienteController');
 
 	Route::apiResource('usuario', 'UsuarioController');
@@ -33,7 +33,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('vivienda', 'ViviendaController');
 
-	Route::post('busqueda','ClienteController@busqueda');
+	Route::post('busqueda', 'ClienteController@busqueda');
 
 	Route::get('pdf','ClienteController@generarpdf');
 
@@ -44,6 +44,12 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 	Route::apiResource('boletaemitida', 'BoletaEmitidaController');
 
 	Route::apiResource('abonoboleta', 'AbonoBoletaController');
+
+	Route::post('obtenerIdRegion', 'RegionController@obtenerId');
+
+	Route::post('obtenerIdComuna', 'ComunaController@obtenerId');
+
+	Route::post('obtenerIdCliente', 'ClienteController@obtenerId');
 
 });
 

@@ -87,4 +87,19 @@ class RegionController extends Controller
         Region::destroy($id);
         return['deleted' => true];
     }
+
+    public function obtenerId(Request $request)
+    {
+        try {
+
+            $idregion = Region::where('des_zona', $request['des_zona'])->first();
+            return \Response::json($idregion, 200);
+
+        }catch(\Exception $e) {
+
+            \Log::info('Error no se encontro la Region'. $e);
+            return \Response::json('Error'.$e ,500); 
+
+        }
+    }
 }

@@ -87,4 +87,19 @@ class ComunaController extends Controller
         Comuna::destroy($id);
         return['deleted' => true];
     }
+
+    public function obtenerId(Request $request)
+    {
+        try {
+
+            $idcomuna = Comuna::with('id')->where('des_comu', $request['des_comu'])->first();
+            return \Response::json($idcomuna, 200);
+
+        }catch(\Exception $e) {
+
+            \Log::info('Error no se encontro la Region'. $e);
+            return \Response::json('Error'.$e ,500); 
+
+        }
+    }
 }
