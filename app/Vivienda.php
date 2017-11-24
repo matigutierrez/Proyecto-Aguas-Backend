@@ -32,5 +32,9 @@ class Vivienda extends Model
       return $this->hasMany('App\RegistroMensual');
     }
 
+    public function medidor() {
+      return $this->hasOne('App\Medidor');
+    }
+
     public $timestamps = false;
 }

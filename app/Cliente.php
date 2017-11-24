@@ -15,7 +15,7 @@ class Cliente extends Model
     protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia']; 
 
     public function usuario() {
-    	return $this->hasOne('App\Usuario');
+        return $this->hasOne('App\Usuario');
     }
 
     public function viviendas() {
