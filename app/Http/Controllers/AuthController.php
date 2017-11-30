@@ -25,7 +25,7 @@ class AuthController extends Controller
 			return response()->json(['error' => 'could_not_create_token'], 500);
 		}
 		// all good so return the token
-		return response()->json(['token' => 'Bearer ' . $token]); 
+		return response()->json(['token' => 'Bearer ' . $token, 'nombre_usu' => $request->nombre_usu]);
 	}
 
 

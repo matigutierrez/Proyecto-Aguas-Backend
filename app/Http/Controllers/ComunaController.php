@@ -92,7 +92,7 @@ class ComunaController extends Controller
     {
         try {
 
-            $idcomuna = Comuna::with('id')->where('des_comu', $request['des_comu'])->first();
+            $idcomuna = Comuna::with('region')->where('des_comu', $request['des_comu'])->first();
             return \Response::json($idcomuna, 200);
 
         }catch(\Exception $e) {
