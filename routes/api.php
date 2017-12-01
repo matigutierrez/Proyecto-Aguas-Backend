@@ -51,6 +51,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::post('obtenerIdCliente', 'ClienteController@obtenerId');
 
+	Route::get('obtenerCliente', 'ClienteController@client');
+
 	Route::apiResource('medidor', 'MedidorController');
 
 	Route::apiResource('estadomedidor', 'EstadoMedidorController');

@@ -12,6 +12,8 @@ use PDF;
 
 use View;
 
+use JWTAuth;
+
 class ClienteController extends Controller
 {
     /**
@@ -128,6 +130,12 @@ class ClienteController extends Controller
             return \Response::json('Error'.$e ,500); 
 
         }
+    }
+
+    public function client(AuthController $auth) {
+
+        $cliente = DB::table('cliente')->where('id', $auth->getAuthenticatedUser()->cliente_id)->get();
+        return \Response::json($cliente, 200);
     }
     
 }
