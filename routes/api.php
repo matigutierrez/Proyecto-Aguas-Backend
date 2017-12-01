@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('cliente', 'ClienteController');
@@ -58,6 +54,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 	Route::apiResource('medidor', 'MedidorController');
 
 	Route::apiResource('estadomedidor', 'EstadoMedidorController');
+
+	Route::get('logusuario', 'AuthController@getAuthenticatedUser');
 });
 
 Route::post('login', 'AuthController@authenticate');
