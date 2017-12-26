@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RegistroMensualTableSeeder::class);
         $this->call(BoletaEmitidaTableSeeder::class);
         $this->call(AbonoBoletaTableSeeder::class);
+        $this->call(ViviendaClienteTableSeeder::class);
     }
 }

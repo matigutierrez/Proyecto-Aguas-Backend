@@ -18,8 +18,6 @@ class CreateUsuarioTable extends Migration
             $table->string('nombre_usu',20);
             $table->string('password');
             $table->unique('nombre_usu');
-            $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

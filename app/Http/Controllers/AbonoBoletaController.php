@@ -15,7 +15,15 @@ class AbonoBoletaController extends Controller
      */
     public function index()
     {
-        return AbonoBoleta::all();
+        //return AbonoBoleta::all();
+
+        $abonoBoleta = AbonoBoleta::all();
+        foreach ($abonoBoleta as $abono) {
+            foreach ($abono->boletaEmitida as $boletaEmitida) {
+                # code...
+            }
+        }
+        return $abonoBoleta;
     }
 
     /**
@@ -48,7 +56,13 @@ class AbonoBoletaController extends Controller
      */
     public function show($id)
     {
-        return AbonoBoleta::find($id);
+        //return AbonoBoleta::find($id);
+
+        $abono = AbonoBoleta::find($id);
+        foreach ($abono->boletaEmitida as $boletaEmitida) {
+                # code...
+        }
+        return $abono;
     }
 
     /**

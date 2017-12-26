@@ -13,7 +13,7 @@ class AbonoBoleta extends Model
     protected $fillable = ['cod_abono', 'monto_abonado', 'boleta_emitida_id'];
 
     public function boletaEmitida() {
-    	return $this->belongsTo('App\BoleteEmitida');
+    	return $this->belongsTo('App\BoletaEmitida');
     }
 
     public $timestamps = false;

@@ -12,7 +12,8 @@ class EstadoTableSeeder extends Seeder
     public function run()
     {
         DB::table('estado')->insert([
-          'des_estado' => 'Sin Pagar'
+            array('des_estado' => 'Sin Pagar'),
+            array('des_estado' => 'Pagada'),
         ]);
     }
 }

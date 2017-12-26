@@ -15,7 +15,18 @@ class ViviendaClienteController extends Controller
      */
     public function index()
     {
-        return ViviendaCliente::all();
+        //return ViviendaCliente::all();
+
+        $viviendaCliente = ViviendaCliente::all();
+        foreach ($viviendaCliente as $vivienda) {
+            foreach ($vivienda->cliente as $cliente) {
+                # code...
+            }
+            foreach ($vivienda->vivienda as $vivienda) {
+                # code...
+            }
+        }
+        return $viviendaCliente;
     }
 
     /**
@@ -48,7 +59,16 @@ class ViviendaClienteController extends Controller
      */
     public function show($id)
     {
-        return ViviendaCliente::find($id);
+        //return ViviendaCliente::find($id);
+
+        $viviendaCli = ViviendaCliente::find($id);
+        foreach ($viviendaCli->cliente as $cliente) {
+            # code...
+        }
+        foreach ($viviendaCli->vivienda as $vivienda) {
+            # code...
+        }
+        return $viviendaCli;
     }
 
     /**

@@ -15,7 +15,18 @@ class MedidorController extends Controller
      */
     public function index()
     {
-        return Medidor::all();
+        //return Medidor::all();
+
+        $medidores = Medidor::all();
+        foreach ($medidores as $medidor) {
+            foreach ($medidor->estadoMedidor as $estadoMedidor) {
+                # code...
+            }
+            foreach ($medidor->vivienda as $vivienda) {
+                # code...
+            }
+        }
+        return $medidores;
     }
 
     /**
@@ -48,7 +59,16 @@ class MedidorController extends Controller
      */
     public function show($id)
     {
-        return Medidor::find($id);
+        //return Medidor::find($id);
+
+        $medidor = Medidor::find($id);
+        foreach ($medidor->estadoMedidor as $estadoMedidor) {
+            # code...
+        }
+        foreach ($medidor->vivienda as $vivienda) {
+            # code...
+        }
+        return $medidor;
     }
 
     /**

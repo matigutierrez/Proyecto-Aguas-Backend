@@ -22,10 +22,11 @@ class RegionTableSeeder extends Seeder
           array('des_zona' => 'Maule'),
           array('des_zona' => 'Bio Bio'),
           array('des_zona' => 'Araucania'),
-          array('des_zona' => 'Los Rios'),
           array('des_zona' => 'Los Lagos'),
           array('des_zona' => 'Aisen'),
-          array('des_zona' => 'Magallanes')
+          array('des_zona' => 'Magallanes'),
+          array('des_zona' => 'Los Rios'),
+          array('des_zona' => 'Arica y Parinacota')
         ]);
     }
 }
