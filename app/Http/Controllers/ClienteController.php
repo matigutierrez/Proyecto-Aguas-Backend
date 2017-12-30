@@ -21,9 +21,20 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthController $auth)
     {
-        return Cliente::all();
+        $rol = DB::table('rol')->select('des_rol')->where('id', $auth->getAuthenticatedUser()->rol_id)->first();
+
+        if ($rol->des_rol == 'admin') {
+
+            return Cliente::all();
+
+        } else {
+
+            $cliente = DB::table('cliente')->where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
+            return \Response::json($cliente, 200);
+
+        }
     }
 
     /**
