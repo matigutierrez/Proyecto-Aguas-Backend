@@ -33,7 +33,6 @@ class ClienteController extends Controller
 
             $cliente = DB::table('cliente')->where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
             return \Response::json($cliente, 200);
-
         }
     }
 
@@ -55,8 +54,27 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        Cliente::create($request->all());
-        return ['created' => true];
+        try {
+
+            $idCliente = Cliente::insertGetId([
+              'rut_cliente' => $request->rut_cliente,
+              'nombre' => $request->nombre, 
+              'apellido_pater' => $request->apellido_pater,
+              'apellido_mater' => $request->apellido_mater,
+              'telefono' => $request->telefono,
+              'email' => $request->email,
+              'residencia' => $request->residencia
+            ]);
+
+            return \Response::json($idCliente, 200);    
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al crear Cliente' .$e);
+            return \Response::json(['created' => false ], 500); 
+
+        }
+        
     }
 
     /**
@@ -67,7 +85,18 @@ class ClienteController extends Controller
      */
     public function show($id)
     {
-        return Cliente::find($id);
+        try {
+
+            $cliente = DB::table('cliente')->where('id', $id)->first();
+            return \Response::json($cliente, 200);
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al obtener los datos del Cliente' .$e);
+            return \Response::json(['created' => false ], 500);
+
+        }
+        
     }
 
     /**
