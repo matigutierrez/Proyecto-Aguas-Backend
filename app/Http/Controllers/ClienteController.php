@@ -31,8 +31,9 @@ class ClienteController extends Controller
 
         } else {
 
-            $cliente = DB::table('cliente')->where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
+            $cliente = Cliente::where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
             return \Response::json($cliente, 200);
+
         }
     }
 
@@ -58,7 +59,7 @@ class ClienteController extends Controller
 
             $idCliente = Cliente::insertGetId([
               'rut_cliente' => $request->rut_cliente,
-              'nombre' => $request->nombre, 
+              'nombre' => $request->nombre,
               'apellido_pater' => $request->apellido_pater,
               'apellido_mater' => $request->apellido_mater,
               'telefono' => $request->telefono,
@@ -66,12 +67,12 @@ class ClienteController extends Controller
               'residencia' => $request->residencia
             ]);
 
-            return \Response::json($idCliente, 200);    
+            return \Response::json($idCliente, 200);
 
         } catch (Exception $e) {
 
             \Log::info('Error al crear Cliente' .$e);
-            return \Response::json(['created' => false ], 500); 
+            return \Response::json(['created' => false ], 500);
 
         }
         
@@ -87,13 +88,13 @@ class ClienteController extends Controller
     {
         try {
 
-            $cliente = DB::table('cliente')->where('id', $id)->first();
+            $cliente = Cliente::where('id', $id)->first();
             return \Response::json($cliente, 200);
 
         } catch (Exception $e) {
 
             \Log::info('Error al obtener los datos del Cliente' .$e);
-            return \Response::json(['created' => false ], 500);
+            return \Response::json(['show' => false ], 500);
 
         }
         
@@ -119,9 +120,19 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cliente = Cliente::find($id);
-        $cliente->update($request->all());
-        return ['update' => true];
+        try{
+
+            $cliente = Cliente::find($id);
+            $cliente->update($request->all());
+            return ['update' => true];
+
+        } catch(Exception $e) {
+
+            \Log::info('Error al actualizar Cliente' .$e);
+            return \Response::json(['update' => false ], 500);
+
+        }
+        
     }
 
     /**
@@ -132,16 +143,36 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        Cliente::destroy($id);
-        return['deleted' => true];
+        try{
+
+            Cliente::destroy($id);
+            return['deleted' => true];
+
+        } catch(Exception $e) {
+
+            \Log::info('Error al eliminar Cliente' .$e);
+            return \Response::json(['deleted' => false ], 500); 
+
+        }
+        
     }
 
+    /**
+     * Search the specified resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function busqueda() 
     {
         $cliente = DB::table('cliente')->select('nombre', 'email')->get();
         return $cliente;
     }
 
+    /**
+     * Generate PDF.
+     *
+     * @return PDF
+     */
     public function generarpdf()
     {
         try {
@@ -157,6 +188,12 @@ class ClienteController extends Controller
         }
     }
 
+    /**
+     * Get id Cliente
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function obtenerId(Request $request)
     {
         try {
@@ -167,15 +204,20 @@ class ClienteController extends Controller
         }catch(\Exception $e) {
 
             \Log::info('Error no se encontro la Region'. $e);
-            return \Response::json('Error'.$e ,500); 
+            return \Response::json('Error'.$e ,500);
 
         }
     }
 
+     /**
+     * Get Cliente
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function client(AuthController $auth) {
 
         $cliente = DB::table('cliente')->where('id', $auth->getAuthenticatedUser()->cliente_id)->get();
         return \Response::json($cliente, 200);
     }
-    
 }

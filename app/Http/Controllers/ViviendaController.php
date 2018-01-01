@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Vivienda;
 
+use DB;
+
+use JWTAuth;
+
 class ViviendaController extends Controller
 {
     /**
@@ -13,22 +17,31 @@ class ViviendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthController $auth)
     {
-        //return Vivienda::all();
-        $viviendas = Vivienda::all();
-        foreach ($viviendas as $vivienda) {
-            foreach ($vivienda->estado as $estado) {
-                # code...
-            }
-            foreach ($vivienda->comuna as $comuna) {
-                # code...
-            }
-            foreach ($vivienda->subsidio as $subsidio) {
-                # code...
+        $rol = DB::table('rol')->select('des_rol')->where('id', $auth->getAuthenticatedUser()->rol_id)->first();
+
+        if ($rol->des_rol == 'admin') {
+
+            return Vivienda::all();
+
+        } else {
+
+            $idvivienda = DB::table('vivienda_cliente')->where('cliente_id', $auth->getAuthenticatedUser()->cliente_id)->first();
+
+            if(!isset($idvivienda)) {
+
+                //arreglar en caso de que sea mas de una vivienda
+                $vivienda = Vivienda::where('id', $idvivienda)->first();
+                return \Response::json($vivienda, 200);
+
+            } else {
+
+                \Log::info('Error al obtener viviendas' .$e);
+            return \Response::json(['created' => false ], 500);
+
             }
         }
-        return $viviendas;
     }
 
     /**
@@ -49,8 +62,23 @@ class ViviendaController extends Controller
      */
     public function store(Request $request)
     {
-        Vivienda::create($request->all());
-        return ['created' => true];
+        try {
+
+            $idVivienda = Vivienda::insert([
+              'direccion' => $request->direccion,
+              'estado_id' => $request->estado_id,
+              'comuna_id' => $request->comuna_id,
+              'subsidio_id' => $request->subsidio_id
+            ]);
+
+            return \Response::json($idVivienda, 200);
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al crear la Vivienda' .$e);
+            return \Response::json(['created' => false ], 500);
+
+        }
     }
 
     /**
@@ -61,19 +89,17 @@ class ViviendaController extends Controller
      */
     public function show($id)
     {
-        //return Vivienda::find($id);
+        try {
 
-        $vivienda = Vivienda::find($id);
-        foreach ($vivienda->estado as $estado) {
-                # code...
+            $vivienda = Vivienda::where('id', $id)->first();
+            return \Response::json($vivienda, 200);
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al obtener los datos de la Vivienda' .$e);
+            return \Response::json(['show' => false ], 500);
+
         }
-        foreach ($vivienda->comuna as $comuna) {
-            # code...
-        }
-        foreach ($vivienda->subsidio as $subsidio) {
-            # code...
-        }
-        return $vivienda;
     }
 
     /**
@@ -96,9 +122,19 @@ class ViviendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $vivienda = Vivienda::find($id);
-        $vivienda->update($request->all());
-        return ['update' => true];
+        try{
+
+            $vivienda = Vivienda::find($id);
+            $vivienda->update($request->all());
+            return ['update' => true];
+
+        } catch(Exception $e) {
+
+            \Log::info('Error al actualizar Vivienda' .$e);
+            return \Response::json(['update' => false ], 500);
+
+        }
+        
     }
 
     /**
@@ -109,7 +145,17 @@ class ViviendaController extends Controller
      */
     public function destroy($id)
     {
-        Vivienda::destroy($id);
-        return['deleted' => true];
+        try{
+
+            Vivienda::destroy($id);
+            return['deleted' => true];
+
+        } catch(Exception $e) {
+
+            \Log::info('Error al eliminar la Vivienda' .$e);
+            return \Response::json(['deleted' => false ], 500);
+
+        }
+        
     }
 }

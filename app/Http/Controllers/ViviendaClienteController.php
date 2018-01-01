@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\ViviendaCliente;
 
+use DB;
+
+use JWTAuth;
+
 class ViviendaClienteController extends Controller
 {
     /**
@@ -13,7 +17,7 @@ class ViviendaClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthController $auth)
     {
         //return ViviendaCliente::all();
 
