@@ -151,7 +151,7 @@ class ClienteController extends Controller
         } catch(Exception $e) {
 
             \Log::info('Error al eliminar Cliente' .$e);
-            return \Response::json(['deleted' => false ], 500); 
+            return \Response::json(['deleted' => false ], 500);
 
         }
         
@@ -184,27 +184,6 @@ class ClienteController extends Controller
 
             \Log::info('Error en la descarga del pdf'. $e);
             return \Response::json('Error',500); 
-
-        }
-    }
-
-    /**
-     * Get id Cliente
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function obtenerId(Request $request)
-    {
-        try {
-
-            $idcliente = Cliente::with('id')->where('nombre', $request['nombre'])->first();
-            return \Response::json($idcliente, 200);
-
-        }catch(\Exception $e) {
-
-            \Log::info('Error no se encontro la Region'. $e);
-            return \Response::json('Error'.$e ,500);
 
         }
     }
