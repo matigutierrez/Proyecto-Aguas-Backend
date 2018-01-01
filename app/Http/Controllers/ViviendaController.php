@@ -27,20 +27,9 @@ class ViviendaController extends Controller
 
         } else {
 
-            $idvivienda = DB::table('vivienda_cliente')->where('cliente_id', $auth->getAuthenticatedUser()->cliente_id)->first();
+            $viviendas = App\Cliente::with('viviendas')->where('cliente_id', $auth->getAuthenticatedUser()->cliente_id)->get();
+            return \Response::json($vivienda, 200);
 
-            if(!isset($idvivienda)) {
-
-                //arreglar en caso de que sea mas de una vivienda
-                $vivienda = Vivienda::where('id', $idvivienda)->first();
-                return \Response::json($vivienda, 200);
-
-            } else {
-
-                \Log::info('Error al obtener viviendas' .$e);
-            return \Response::json(['created' => false ], 500);
-
-            }
         }
     }
 
