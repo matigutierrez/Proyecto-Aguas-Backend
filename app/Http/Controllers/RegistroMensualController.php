@@ -47,8 +47,29 @@ class RegistroMensualController extends Controller
      */
     public function store(Request $request)
     {
-        RegistroMensual::create($request->all());
-        return ['created' => true];
+        try {
+
+            $idregistroM = RegistroMensual::insertGetId([
+              'year' => $request->year,
+              'lectura' => $request->lectura,
+              'saldo_pagado' => $request->saldo_pagado,
+              'consumo' => $request->consumo,
+              'valor_pagar' => $request->valor_pagar,
+              'lectura_anterior' => $lectura->lectura_anterior,
+              'cargo_fijo' => $request->cargo_fijo,
+              'alcantarillado' => $request->alcantarillado,
+              'vivienda_id' => $request->vivienda_id,
+              'mes_id' => $request->mes_id
+            ]);
+
+            return \Response::json($idregistroM, 200);
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al crear el Registro' .$e);
+            return \Response::json(['created' => false ], 500);
+
+        }
     }
 
     /**

@@ -36,8 +36,23 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        Usuario::create($request->all());
-        return ['created' => true];
+        try {
+
+            $idusuario = Usuario::insertGetId([
+              'nombre_usu' => $request->nombre_usu,
+              'password' => bcrypt($request->password),
+              'cliente_id' => $request->cliente_id,
+              'rol_id' => $request->rol_id
+            ]);
+
+            return \Response::json($idusuario, 200);
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al crear Usuario' .$e);
+            return \Response::json(['created' => false ], 500);
+
+        }
     }
 
     /**

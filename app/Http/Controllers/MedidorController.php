@@ -47,8 +47,24 @@ class MedidorController extends Controller
      */
     public function store(Request $request)
     {
-        Medidor::create($request->all());
-        return ['created' => true];
+        try {
+
+            $idmedidor = Medidor::insertGetId([
+              'num_medidor' => $request->num_medidor,
+              'marca_medidor' => $request->marca_medidor,
+              'lectura_inicial' => $request->lectura_inicial,
+              'vivienda_id' => $request->vivienda_id,
+              'estado_medidor_id' => $request->estado_medidor_id
+            ]);
+
+            return \Response::json($idmedidor, 200);
+
+        } catch (Exception $e) {
+
+            \Log::info('Error al crear el Medidor' .$e);
+            return \Response::json(['created' => false ], 500);
+
+        }
     }
 
     /**
