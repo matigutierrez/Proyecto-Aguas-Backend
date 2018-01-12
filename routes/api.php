@@ -23,6 +23,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('region', 'RegionController');
 
+	Route::apiResource('comite', 'ComiteController');
+
 	Route::apiResource('comuna', 'ComunaController');
 
 	Route::apiResource('estado', 'EstadoController');
