@@ -24,5 +24,9 @@ class Medidor extends Model
     	return $this->hasMany('App\BoletaEmitida');
     }
 
+    public function comite() {
+        return $this->belongsTo('App\Comite', 'comite_id')
+    }
+
     public $timestamps = false;
 }

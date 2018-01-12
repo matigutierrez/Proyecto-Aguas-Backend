@@ -19,11 +19,15 @@ class Usuario extends Authenticatable
     protected $hidden = ['password', 'remember_token',];
 
     public function cliente() {
-      return $this->belongsTo('App\Cliente');
+        return $this->belongsTo('App\Cliente');
     }
 
     public function roles() {
-      return $this->hasMany('App\Rol_Usuario');
+        return $this->hasMany('App\Rol_Usuario');
+    }
+
+    public function comites() {
+        return $this->belongsToMany('App\Comite', 'usuario_comite', 'usuario_id', 'comite_id');
     }
 
     public $timestamps = false;

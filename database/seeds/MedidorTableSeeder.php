@@ -16,7 +16,8 @@ class MedidorTableSeeder extends Seeder
           'marca_medidor' => 'MediWater',
           'lectura_inicial' => '0',
           'vivienda_id' => '1',
-          'estado_medidor_id' => '1'
+          'estado_medidor_id' => '1',
+          'comite_id' => '1'
         ]);
     }
 }
