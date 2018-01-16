@@ -15,7 +15,15 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return Usuario::all();
+        //return Usuario::all();
+
+        $usuarios = Usuario::all();
+        foreach ($usuarios as $usuario) {
+            foreach ($usuario->cliente as $cliente) {
+                # code...
+            }
+        }
+        return $usuarios;
     }
 
     /**
@@ -63,7 +71,13 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        return Usuario::find($id);
+        //return Usuario::find($id);
+
+        $usuario = Usuario::find($id);
+        foreach ($usuario->cliente as $cliente) {
+            # code...
+        }
+        return $usuario;
     }
 
     /**

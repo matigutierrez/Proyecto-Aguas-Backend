@@ -12,8 +12,8 @@ class ComiteTableSeeder extends Seeder
     public function run()
     {
         DB::table('comite')->insert([
-        	['nombre' => 'Comite Iquique', 'comuna_id' => '1'],
-        	['nombre' => 'Alto Hospicio', 'comuna_id' => '2']
+            ['nombre' => 'Comite Iquique', 'comuna_id' => '1'],
+            ['nombre' => 'Alto Hospicio', 'comuna_id' => '2']
         ]);
     }
 }

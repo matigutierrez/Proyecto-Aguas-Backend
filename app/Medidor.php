@@ -10,7 +10,7 @@ class Medidor extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['num_medidor', 'marca_medidor', 'lectura_inicial', 'vivienda_id', 'estado_medidor_id'];
+    protected $fillable = ['num_medidor', 'marca_medidor', 'lectura_inicial', 'vivienda_id', 'estado_medidor_id', 'comite_id'];
 
     public function estadoMedidor() {
     	return $this->belongsTo('App\EstadoMedidor');
@@ -25,7 +25,7 @@ class Medidor extends Model
     }
 
     public function comite() {
-        return $this->belongsTo('App\Comite', 'comite_id')
+        return $this->belongsTo('App\Comite', 'comite_id');
     }
 
     public $timestamps = false;

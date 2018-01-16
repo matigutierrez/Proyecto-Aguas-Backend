@@ -25,6 +25,9 @@ class MedidorController extends Controller
             foreach ($medidor->vivienda as $vivienda) {
                 # code...
             }
+            foreach ($medidor->comite as $comite) {
+                # code...
+            }
         }
         return $medidores;
     }
@@ -54,7 +57,8 @@ class MedidorController extends Controller
               'marca_medidor' => $request->marca_medidor,
               'lectura_inicial' => $request->lectura_inicial,
               'vivienda_id' => $request->vivienda_id,
-              'estado_medidor_id' => $request->estado_medidor_id
+              'estado_medidor_id' => $request->estado_medidor_id,
+              'comite_id' => $request->comite_id
             ]);
 
             return \Response::json($idmedidor, 200);
@@ -82,6 +86,9 @@ class MedidorController extends Controller
             # code...
         }
         foreach ($medidor->vivienda as $vivienda) {
+            # code...
+        }
+        foreach ($medidor->comite as $comite) {
             # code...
         }
         return $medidor;

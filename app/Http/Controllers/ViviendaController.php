@@ -39,7 +39,7 @@ class ViviendaController extends Controller
 
                 \Log::info('Error al obtener viviendas' .$e);
                 return \Response::json(['created' => false ], 500);
-
+            }
         }
     }
 

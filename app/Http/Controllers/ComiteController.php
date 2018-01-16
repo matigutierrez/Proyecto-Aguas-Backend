@@ -14,7 +14,15 @@ class ComiteController extends Controller
      */
     public function index()
     {
-        return Comite::all();
+        //return Comite::all();
+
+        $comites = Comite::all();
+        foreach ($comites as $comite) {
+            foreach ($comite->comuna as $comuna) {
+                # code...
+            }
+        }
+        return $comites;
     }
 
     /**
@@ -49,7 +57,13 @@ class ComiteController extends Controller
      */
     public function show($id)
     {
-        return Comite::find($id);
+        //return Comite::find($id);
+
+        $comite = Comite::find($id);
+        foreach ($comite->comuna as $comuna) {
+            # code...
+        }
+        return $comite;
     }
 
     /**
