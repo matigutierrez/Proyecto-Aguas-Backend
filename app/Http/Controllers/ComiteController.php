@@ -16,13 +16,7 @@ class ComiteController extends Controller
     {
         //return Comite::all();
 
-        $comites = Comite::all();
-        foreach ($comites as $comite) {
-            foreach ($comite->comuna as $comuna) {
-                # code...
-            }
-        }
-        return $comites;
+        return Comite::with('comuna')->get();
     }
 
     /**
@@ -59,11 +53,7 @@ class ComiteController extends Controller
     {
         //return Comite::find($id);
 
-        $comite = Comite::find($id);
-        foreach ($comite->comuna as $comuna) {
-            # code...
-        }
-        return $comite;
+        return Comite::with('comuna')->where('id', $id)->first();
     }
 
     /**
