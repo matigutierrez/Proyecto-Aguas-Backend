@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Comite;
+use App\Usuario;
 use Illuminate\Http\Request;
+use JWTAuth;
 
 class ComiteController extends Controller
 {
@@ -12,11 +14,14 @@ class ComiteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthController $auth)
     {
         //return Comite::all();
+    	$usuario = Usuario::where('id', $auth->getAuthenticatedUser()->id)->first();
 
+    	// if ( $usuario->superadmin ) {
         return Comite::with('comuna')->get();
+        // }
     }
 
     /**
