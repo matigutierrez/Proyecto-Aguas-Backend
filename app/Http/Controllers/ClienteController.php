@@ -28,7 +28,7 @@ class ClienteController extends Controller
         if ($usuario->rol == "Administrador") {
             return Cliente::all();
         }
-        return Cliente::where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
+        return $usuario->cliente;
     }
 
     /**
