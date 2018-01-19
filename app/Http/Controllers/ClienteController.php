@@ -31,7 +31,7 @@ class ClienteController extends Controller
             case 'Administrador':
                 return $usuario->comite->medidores->pluck('vivienda.clientes');
             default:
-                return $usuario->cliente;
+                return [$usuario->cliente];
         }
     }
 
