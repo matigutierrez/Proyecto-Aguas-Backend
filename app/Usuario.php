@@ -14,7 +14,7 @@ class Usuario extends Authenticatable
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['nombre_usu', 'password', 'superadmin', 'cliente_id'];
+    protected $fillable = ['nombre_usu', 'password', 'superadmin', 'cliente_id', 'comite_id'];
 
     protected $hidden = ['password', 'remember_token'];
 
@@ -24,15 +24,14 @@ class Usuario extends Authenticatable
         return $this->belongsTo('App\Cliente', 'cliente_id');
     }
 
-    public function comites() {
-        return $this->belongsToMany('App\Comite', 'usuario_administra_comite', 'usuario_id', 'comite_id');
+    public function comite() {
+        return $this->belongsTo('App\Comite', 'comite_id');
     }
 
     public function getRolAttribute() {
-        if ($this->superadmin) {
+        if ( $this->superadmin ) {
             return "Super Administrador";
-        }
-        if ( count($this->comites) > 0) {
+        } elseif ( isset($this->comite) ) {
             return "Administrador";
         }
         return "Cliente";

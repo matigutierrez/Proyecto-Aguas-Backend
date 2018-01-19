@@ -12,26 +12,20 @@ class Comite extends Model
 
     protected $fillable = ['nombre'];
 
+    //protected $appends = ['usuarios'];
+
     public $timestamps = false;
 
     public function administradores() {
-    	return $this->belongsToMany('App\Usuario', 'usuario_administra_comite', 'comite_id', 'usuario_id');
+        return $this->hasMany('App\Usuario', 'comite_id');
     }
 
-    public function usuariosDeClientes() {
-        // Al llamar este metodo, usar: comite->usuarioDeClientes()
-        // Los parentesis son importantes
-        $usuarios = [];
-
-        foreach ($this->medidores as $medidor) {
-            foreach ($medidor->vivienda->getUsuarios() as $usuario) {
-                array_push($usuarios, $usuario);
-            }
-        }
-
-        return $usuarios;
-
+    // $comite->usuarios
+    /* (El metodo es muy pesado, utiliza mucha memoria y 'crashea')
+    public function getUsuariosAttribute() {
+        return $this->medidores->pluck('vivienda.clientes.*.usuarios')->collapse();
     }
+    */
 
     public function comuna() {
     	return $this->belongsTo('App\Comuna', 'comuna_id');

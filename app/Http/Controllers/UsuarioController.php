@@ -23,18 +23,9 @@ class UsuarioController extends Controller
 
             return Usuario::with(['cliente', 'comites'])->get();
             
-        } else if ( count($usuario->comites) > 0 ) {
+        } else if ( $usuario->comite ) {
 
-            $usuarios = [];
-
-            foreach ($usuario->comites as $comite) {
-                foreach ($comite->usuariosDeClientes() as $usuario) {
-                    array_push($usuarios, $usuario);
-                }
-            }
-
-            return $usuarios;
-
+            return $usuario->comite->medidores->pluck('vivienda.clientes.*.usuarios')->collapse()->collapse()->unique();
 
         }
 

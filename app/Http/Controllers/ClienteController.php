@@ -23,9 +23,9 @@ class ClienteController extends Controller
      */
     public function index(AuthController $auth)
     {
-        $rol = DB::table('rol')->select('des_rol')->where('id', $auth->getAuthenticatedUser()->rol_id)->first();
+        $usuario = $auth->getAuthenticatedUser();
 
-        if ($rol->des_rol == 'admin') {
+        if ($usuario->rol == "Administrador") {
             return Cliente::all();
         }
         return Cliente::where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
