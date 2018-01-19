@@ -25,10 +25,14 @@ class ClienteController extends Controller
     {
         $usuario = $auth->getAuthenticatedUser();
 
-        if ($usuario->rol == "Administrador") {
-            return Cliente::all();
+        switch ($usuario->rol) {
+            case 'Super Administrador':
+                return Cliente::all();
+            case 'Administrador':
+                return $usuario->comite->medidores->pluck('vivienda.clientes');
+            default:
+                return $usuario->cliente;
         }
-        return $usuario->cliente;
     }
 
     /**
