@@ -18,6 +18,21 @@ class Comite extends Model
     	return $this->belongsToMany('App\Usuario', 'usuario_administra_comite', 'comite_id', 'usuario_id');
     }
 
+    public function usuariosDeClientes() {
+        // Al llamar este metodo, usar: comite->usuarioDeClientes()
+        // Los parentesis son importantes
+        $usuarios = [];
+
+        foreach ($this->medidores as $medidor) {
+            foreach ($medidor->vivienda->getUsuarios() as $usuario) {
+                array_push($usuarios, $usuario);
+            }
+        }
+
+        return $usuarios;
+
+    }
+
     public function comuna() {
     	return $this->belongsTo('App\Comuna', 'comuna_id');
     }

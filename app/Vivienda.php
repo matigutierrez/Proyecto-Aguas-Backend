@@ -28,6 +28,18 @@ class Vivienda extends Model
       return $this->belongsToMany('App\Cliente', 'vivienda_cliente', 'vivienda_id', 'cliente_id');
     }
 
+    public function getUsuarios() {
+      // All llamar este metodo: vivienda->getUsuarios()
+      // Los parentesis son importantes
+      $usuarios = [];
+      foreach ($this->clientes as $cliente) {
+        foreach ($cliente->usuarios as $usuario) {
+          array_push($usuarios, $usuario);
+        }
+      }
+      return $usuarios;
+    }
+
     public function registrosMensuales() {
       return $this->hasMany('App\RegistroMensual');
     }

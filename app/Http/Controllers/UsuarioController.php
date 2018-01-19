@@ -28,21 +28,9 @@ class UsuarioController extends Controller
             $usuarios = [];
 
             foreach ($usuario->comites as $comite) {
-
-                foreach ($comite->medidores as $medidor) {
-
-                    foreach ($medidor->vivienda->clientes as $cliente) {
-
-                        foreach ($cliente->usuarios as $usuario) {
-
-                            array_push($usuarios, $usuario);
-                            
-                        }
-
-                    }
-
+                foreach ($comite->usuariosDeClientes() as $usuario) {
+                    array_push($usuarios, $usuario);
                 }
-
             }
 
             return $usuarios;
