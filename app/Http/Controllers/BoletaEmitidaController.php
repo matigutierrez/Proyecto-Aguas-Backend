@@ -15,15 +15,7 @@ class BoletaEmitidaController extends Controller
      */
     public function index()
     {
-        //return BoletaEmitida::all();
-
-        $boletaEmitida = BoletaEmitida::all();
-        foreach ($boletaEmitida as $boleta) {
-            foreach ($boleta->medidor as $medidor) {
-                # code...
-            }
-        }
-        return $boletaEmitida;
+        return BoletaEmitida::with('medidor')->get();
     }
 
     /**
@@ -56,13 +48,7 @@ class BoletaEmitidaController extends Controller
      */
     public function show($id)
     {
-        //return BoletaEmitida::find($id);
-
-        $boleta = BoletaEmitida::find($id);
-        foreach ($boleta->medidor as $medidor) {
-                # code...
-        }
-        return $boleta;
+        return BoletaEmitida::with('medidor')->where('id', $id)->first();
     }
 
     /**

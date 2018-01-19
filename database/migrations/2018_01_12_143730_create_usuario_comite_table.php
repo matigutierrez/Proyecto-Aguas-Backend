@@ -13,7 +13,7 @@ class CreateUsuarioComiteTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_comite', function (Blueprint $table) {
+        Schema::create('usuario_administra_comite', function (Blueprint $table) {
             $table->integer('usuario_id')->unsigned();
             $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('comite_id')->unsigned();

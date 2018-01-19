@@ -25,7 +25,7 @@ class Vivienda extends Model
     }
 
     public function clientes() {
-      return $this->hasMany('App\ViviendaCliente');
+      return $this->belongsToMany('App\Cliente', 'vivienda_cliente', 'vivienda_id', 'cliente_id');
     }
 
     public function registrosMensuales() {

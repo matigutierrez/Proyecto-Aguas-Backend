@@ -15,15 +15,7 @@ class ComunaController extends Controller
      */
     public function index()
     {
-        //return Comuna::all();
-
-        $comunas = Comuna::all();
-        foreach ($comunas as $comuna) {
-            foreach ($comuna->region as $region) {
-                # code...
-            }
-        }
-        return $comunas;
+        return Comuna::with('region')->get();
     }
 
     /**
@@ -56,14 +48,7 @@ class ComunaController extends Controller
      */
     public function show($id)
     {
-        //return Comuna::find($id);
-
-        $comuna = Comuna::find($id);
-
-        foreach ($comuna->region as $region) {
-            # code...
-        }
-        return $comuna;
+        return Comuna::with('region')->where('id', $id)->first();
     }
 
     /**

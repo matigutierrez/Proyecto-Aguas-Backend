@@ -15,15 +15,7 @@ class AbonoBoletaController extends Controller
      */
     public function index()
     {
-        //return AbonoBoleta::all();
-
-        $abonoBoleta = AbonoBoleta::all();
-        foreach ($abonoBoleta as $abono) {
-            foreach ($abono->boletaEmitida as $boletaEmitida) {
-                # code...
-            }
-        }
-        return $abonoBoleta;
+        return AbonoBoleta::with('boletaEmitida')->get();
     }
 
     /**
@@ -56,13 +48,7 @@ class AbonoBoletaController extends Controller
      */
     public function show($id)
     {
-        //return AbonoBoleta::find($id);
-
-        $abono = AbonoBoleta::find($id);
-        foreach ($abono->boletaEmitida as $boletaEmitida) {
-                # code...
-        }
-        return $abono;
+        return AbonoBoleta::with('boletaEmitida')->where('id', $id)->first();
     }
 
     /**
@@ -87,7 +73,8 @@ class AbonoBoletaController extends Controller
     {
         $abonoboleta = AbonoBoleta::find($id);
         $abonoboleta->update($request->all());
-        return ['update' => true];    }
+        return ['update' => true];
+    }
 
     /**
      * Remove the specified resource from storage.

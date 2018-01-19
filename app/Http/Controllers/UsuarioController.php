@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Usuario;
 
+use JWTAuth;
+
 class UsuarioController extends Controller
 {
     /**
@@ -13,17 +15,42 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(AuthController $auth)
     {
-        //return Usuario::all();
+        $usuario = Usuario::where('id', $auth->getAuthenticatedUser()->id)->first();
 
-        $usuarios = Usuario::all();
-        foreach ($usuarios as $usuario) {
-            foreach ($usuario->cliente as $cliente) {
-                # code...
+        if ( $usuario->superadmin ) {
+
+            return Usuario::with(['cliente', 'comites'])->get();
+            
+        } else if ( count($usuario->comites) > 0 ) {
+
+            $usuarios = [];
+
+            foreach ($usuario->comites as $comite) {
+
+                foreach ($comite->medidores as $medidor) {
+
+                    foreach ($medidor->vivienda->clientes as $cliente) {
+
+                        foreach ($cliente->usuarios as $usuario) {
+
+                            array_push($usuarios, $usuario);
+                            
+                        }
+
+                    }
+
+                }
+
             }
+
+            return $usuarios;
+
+
         }
-        return $usuarios;
+
+        return [$usuario];
     }
 
     /**
@@ -71,13 +98,7 @@ class UsuarioController extends Controller
      */
     public function show($id)
     {
-        //return Usuario::find($id);
-
-        $usuario = Usuario::find($id);
-        foreach ($usuario->cliente as $cliente) {
-            # code...
-        }
-        return $usuario;
+        return Usuario::with(['cliente', 'comites'])->where('id', $id)->first();
     }
 
     /**
@@ -116,4 +137,9 @@ class UsuarioController extends Controller
         Usuario::destroy($id);
         return['deleted' => true];
     }
+
+    public function usuarioActual(AuthController $auth) {
+        return Usuario::where('id', $auth->getAuthenticatedUser()->id)->first();
+    }
+
 }

@@ -15,7 +15,7 @@ class Comite extends Model
     public $timestamps = false;
 
     public function administradores() {
-    	return $this->belongsToMany('App\Usuario', 'usuario_comite', 'comite_id', 'usuario_id');
+    	return $this->belongsToMany('App\Usuario', 'usuario_administra_comite', 'comite_id', 'usuario_id');
     }
 
     public function comuna() {

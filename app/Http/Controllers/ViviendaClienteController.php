@@ -19,18 +19,7 @@ class ViviendaClienteController extends Controller
      */
     public function index(AuthController $auth)
     {
-        //return ViviendaCliente::all();
-
-        $viviendaCliente = ViviendaCliente::all();
-        foreach ($viviendaCliente as $vivienda) {
-            foreach ($vivienda->cliente as $cliente) {
-                # code...
-            }
-            foreach ($vivienda->vivienda as $vivienda) {
-                # code...
-            }
-        }
-        return $viviendaCliente;
+        return ViviendaCliente::with(['cliente', 'vivienda'])->get();
     }
 
     /**
@@ -63,16 +52,7 @@ class ViviendaClienteController extends Controller
      */
     public function show($id)
     {
-        //return ViviendaCliente::find($id);
-
-        $viviendaCli = ViviendaCliente::find($id);
-        foreach ($viviendaCli->cliente as $cliente) {
-            # code...
-        }
-        foreach ($viviendaCli->vivienda as $vivienda) {
-            # code...
-        }
-        return $viviendaCli;
+        return ViviendaCliente::with(['cliente', 'vivienda'])->where('id', $id)->first();
     }
 
     /**

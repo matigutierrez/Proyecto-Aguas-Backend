@@ -15,21 +15,7 @@ class MedidorController extends Controller
      */
     public function index()
     {
-        //return Medidor::all();
-
-        $medidores = Medidor::all();
-        foreach ($medidores as $medidor) {
-            foreach ($medidor->estadoMedidor as $estadoMedidor) {
-                # code...
-            }
-            foreach ($medidor->vivienda as $vivienda) {
-                # code...
-            }
-            foreach ($medidor->comite as $comite) {
-                # code...
-            }
-        }
-        return $medidores;
+        return Medidor::with(['estadoMedidor', 'vivienda', 'comite'])->get();
     }
 
     /**
@@ -79,19 +65,7 @@ class MedidorController extends Controller
      */
     public function show($id)
     {
-        //return Medidor::find($id);
-
-        $medidor = Medidor::find($id);
-        foreach ($medidor->estadoMedidor as $estadoMedidor) {
-            # code...
-        }
-        foreach ($medidor->vivienda as $vivienda) {
-            # code...
-        }
-        foreach ($medidor->comite as $comite) {
-            # code...
-        }
-        return $medidor;
+        return Medidor::with(['estadoMedidor', 'vivienda', 'comite'])->where('id', $id)->first();
     }
 
     /**

@@ -15,18 +15,7 @@ class RegistroMensualController extends Controller
      */
     public function index()
     {
-        //return RegistroMensual::all();
-
-        $registroMensual = RegistroMensual::all();
-        foreach ($registroMensual as $mensual) {
-            foreach ($mensual->vivienda as $vivienda) {
-                # code...
-            }
-            foreach ($mensual->mes as $mes) {
-                # code...
-            }
-        }
-        return $registroMensual;
+        return RegistroMensual::with(['vivienda', 'mes'])->get();
     }
 
     /**
@@ -80,16 +69,7 @@ class RegistroMensualController extends Controller
      */
     public function show($id)
     {
-        return RegistroMensual::find($id);
-
-        $registroMens = AbonoBoleta::find($id);
-        foreach ($registroMens->vivienda as $vivienda) {
-            # code...
-        }
-        foreach ($registroMens->mes as $mes) {
-            # code...
-        }
-        return $registroMens;
+        return RegistroMensual::with(['vivienda', 'mes'])->where('id', $id)->first();
     }
 
     /**

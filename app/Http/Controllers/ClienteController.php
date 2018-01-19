@@ -26,15 +26,9 @@ class ClienteController extends Controller
         $rol = DB::table('rol')->select('des_rol')->where('id', $auth->getAuthenticatedUser()->rol_id)->first();
 
         if ($rol->des_rol == 'admin') {
-
             return Cliente::all();
-
-        } else {
-
-            $cliente = Cliente::where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
-            return \Response::json($cliente, 200);
-
         }
+        return Cliente::where('id', $auth->getAuthenticatedUser()->cliente_id)->first();
     }
 
     /**

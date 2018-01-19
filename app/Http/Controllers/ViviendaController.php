@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Cliente;
 use App\Vivienda;
 
 use DB;
@@ -19,6 +20,7 @@ class ViviendaController extends Controller
      */
     public function index(AuthController $auth)
     {
+        // Rol del usuario
         $rol = DB::table('rol')->select('des_rol')->where('id', $auth->getAuthenticatedUser()->rol_id)->first();
 
         if ($rol->des_rol == 'admin') {
@@ -26,14 +28,12 @@ class ViviendaController extends Controller
             return Vivienda::all();
 
         } else {
-
-            $viviendas = App\Cliente::with('viviendas')->where('cliente_id', $auth->getAuthenticatedUser()->cliente_id)->get();
+            // Obtener cliente
+            $cliente = Cliente::find($auth->getAuthenticatedUser()->cliente_id);
             
-            if(!isset($viviendas)) {
+            if(isset($cliente)) {
 
-                //arreglar en caso de que sea mas de una vivienda
-                $vivienda = Vivienda::where('id', $viviendas->vivienda_id)->first();
-                return \Response::json($vivienda, 200);
+                return $cliente->viviendas;
 
             } else {
 
