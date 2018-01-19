@@ -21,25 +21,25 @@ class ViviendaController extends Controller
     public function index(AuthController $auth)
     {
         // Rol del usuario
-        $rol = DB::table('rol')->select('des_rol')->where('id', $auth->getAuthenticatedUser()->rol_id)->first();
+        $usuario = $auth->getAuthenticatedUser();
 
-        if ($rol->des_rol == 'admin') {
-
-            return Vivienda::all();
-
-        } else {
-            // Obtener cliente
-            $cliente = Cliente::find($auth->getAuthenticatedUser()->cliente_id);
+        switch ( $usuario->rol ) {
+            case 'Super Administrador':
+                return Vivienda::all();
+            case 'Administrador':
+                return $usuario->comite->medidores->pluck('vivienda');
+            default:
+                $cliente = Cliente::find($auth->getAuthenticatedUser()->cliente_id);
             
-            if(isset($cliente)) {
+                if(isset($cliente)) {
 
-                return $cliente->viviendas;
+                    return $cliente->viviendas;
 
-            } else {
+                } else {
 
-                \Log::info('Error al obtener viviendas' .$e);
-                return \Response::json(['created' => false ], 500);
-            }
+                    \Log::info('Error al obtener viviendas' .$e);
+                    return \Response::json(['created' => false ], 500);
+                }
         }
     }
 
