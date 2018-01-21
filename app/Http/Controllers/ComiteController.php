@@ -97,4 +97,8 @@ class ComiteController extends Controller
         Comite::destroy($id);
         return ['deleted' => true];
     }
+
+    public function clientes($id) {
+        return Comite::find($id)->medidores->pluck('vivienda.clientes')->collapse()->unique();
+    }
 }
