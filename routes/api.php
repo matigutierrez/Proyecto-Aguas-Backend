@@ -19,7 +19,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('usuario', 'UsuarioController');
 	
-	Route::get('usuarioActual', 'UsuarioController@usuarioActual');
+	Route::get('usuario/actual', 'UsuarioController@usuarioActual');
 
 	Route::apiResource('rol', 'RolController');
 
