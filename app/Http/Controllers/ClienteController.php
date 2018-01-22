@@ -29,7 +29,7 @@ class ClienteController extends Controller
             case 'Super Administrador':
                 return Cliente::all();
             case 'Administrador':
-                return $usuario->comite->medidores->pluck('vivienda.clientes');
+                return $usuario->comite->medidores->pluck('vivienda.clientes')->collapse()->unique();
             default:
                 return [$usuario->cliente];
         }

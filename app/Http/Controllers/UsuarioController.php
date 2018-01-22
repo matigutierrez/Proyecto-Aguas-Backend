@@ -21,7 +21,7 @@ class UsuarioController extends Controller
 
         if ( $usuario->superadmin ) {
 
-            return Usuario::with(['cliente', 'comites'])->get();
+            return Usuario::with(['cliente', 'comite'])->get();
             
         } else if ( $usuario->comite ) {
 
