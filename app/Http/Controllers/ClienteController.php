@@ -199,4 +199,29 @@ class ClienteController extends Controller
         $cliente = DB::table('cliente')->where('id', $auth->getAuthenticatedUser()->cliente_id)->get();
         return \Response::json($cliente, 200);
     }
+
+    /**
+    * Agregar vivienda
+    *
+    * @param  int  $id
+    * @param  int  $idviv
+    */
+    public function addVivienda($id, $idviv) {
+        $cliente = Cliente::find($id);
+        $cliente->addVivienda($idviv);
+        return $cliente;
+    }
+
+    /**
+    * Quitar vivienda
+    *
+    * @param  int  $id
+    * @param  int  $idviv
+    */
+    public function removeVivienda($id, $idviv) {
+        $cliente = Cliente::find($id);
+        $cliente->removeVivienda($idviv);
+        return $cliente;
+    }
+
 }

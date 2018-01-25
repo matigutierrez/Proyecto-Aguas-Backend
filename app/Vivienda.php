@@ -41,5 +41,13 @@ class Vivienda extends Model
       return $this->hasOne('App\Medidor');
     }
 
+    public function addCliente($id) {
+      return $this->clientes->attach($id);
+    }
+
+    public function removeCliente($id) {
+      return $this->clientes->detach($id);
+    }
+
     public $timestamps = false;
 }

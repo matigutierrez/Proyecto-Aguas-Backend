@@ -26,5 +26,13 @@ class Cliente extends Model
         return $this->belongsToMany('App\Vivienda', 'vivienda_cliente', 'cliente_id', 'vivienda_id');
     }
 
+    public function addVivienda($id) {
+        return $this->viviendas()->attach($id);
+    }
+
+    public function removeVivienda($id) {
+        return $this->viviendas()->detach($id);
+    }
+
     public $timestamps = false;
 }

@@ -14,12 +14,12 @@ class CreateViviendaClienteTable extends Migration
     public function up()
     {
         Schema::create('vivienda_cliente', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('cliente_id')->unsigned();
             $table->integer('vivienda_id')->unsigned();
             $table->timestamp('fecha_adquisicion');
             $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('vivienda_id')->references('id')->on('vivienda')->onDelete('cascade')->onUpdate('cascade');
+            $table->primary(['cliente_id', 'vivienda_id']);
         });
     }
 
