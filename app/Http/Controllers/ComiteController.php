@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comite;
 use App\Usuario;
+use App\Medidor;
 use Illuminate\Http\Request;
 use JWTAuth;
 
@@ -103,7 +104,7 @@ class ComiteController extends Controller
     }
 
     public function medidores($id) {
-        return Medidores::where('comite_id', $id)->with('vivienda')->get();
+        return Medidor::where('comite_id', $id)->with('vivienda')->get();
     }
 
 }
