@@ -56,6 +56,7 @@ class UsuarioController extends Controller
               'nombre_usu' => $request->nombre_usu,
               'password' => bcrypt($request->password),
               'cliente_id' => $request->cliente_id,
+              'comite_id' => $request->comite_id,
               'superadmin' => 0
             ]);
 
