@@ -31,9 +31,11 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('comite', 'ComiteController');
 
-	Route::get('comite/{id}/clientes/', 'ComiteController@clientes');
+	Route::get('comite/{id}/clientes', 'ComiteController@clientes');
 
-	Route::get('comite/{id}/medidores/', 'ComiteController@medidores');
+	Route::get('comite/{id}/viviendas', 'ComiteController@viviendas');
+
+	Route::get('comite/{id}/medidores', 'ComiteController@medidores');
 
 	Route::apiResource('comuna', 'ComunaController');
 
