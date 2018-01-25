@@ -52,14 +52,12 @@ class UsuarioController extends Controller
     {
         try {
 
-            $idusuario = Usuario::insertGetId([
+            return Usuario::insertGetId([
               'nombre_usu' => $request->nombre_usu,
               'password' => bcrypt($request->password),
               'cliente_id' => $request->cliente_id,
-              'rol_id' => $request->rol_id
+              'superadmin' => 0
             ]);
-
-            return \Response::json($idusuario, 200);
 
         } catch (Exception $e) {
 
