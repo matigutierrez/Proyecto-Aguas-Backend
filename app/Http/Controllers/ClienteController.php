@@ -87,10 +87,9 @@ class ClienteController extends Controller
     public function show($id)
     {
         try {
-
-            $cliente = Cliente::where('id', $id)->first();
-            return \Response::json($cliente, 200);
-
+            
+            return Cliente::where('id', $id)->with('viviendas')->first();
+            
         } catch (Exception $e) {
 
             \Log::info('Error al obtener los datos del Cliente' .$e);
