@@ -101,4 +101,9 @@ class ComiteController extends Controller
     public function clientes($id) {
         return Comite::find($id)->medidores->pluck('vivienda.clientes')->collapse()->unique();
     }
+
+    public function medidores($id) {
+        return Medidores::where('comite_id', $id)->with('vivienda')->get();
+    }
+
 }
