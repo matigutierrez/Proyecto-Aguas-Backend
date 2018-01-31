@@ -13,6 +13,8 @@ class Cliente extends Model
     protected $primaryKey = "id";
 
     protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia'];
+
+    protected $appends = ['medidores'];
     
     public function usuarios() {
         return $this->hasMany('App\Usuario', 'cliente_id');

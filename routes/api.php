@@ -17,7 +17,7 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('cliente', 'ClienteController');
 
-	Route::get('cliente/{id]/viviendas', 'ClienteController@viviendas');
+	Route::get('cliente/{id}/viviendas', 'ClienteController@viviendas');
 
 	Route::get('cliente/{id}/addvivienda/{idviv}', 'ClienteController@addVivienda');
 
