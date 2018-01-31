@@ -198,6 +198,24 @@ class ClienteController extends Controller
     }
 
     /**
+    * Obtener viviendas del cliente
+    * 
+    * @param  int  $id
+    */
+    public function viviendas($id) {
+        return Cliente::find($id)->viviendas;
+    }
+
+    /**
+    * Obtener medidores del cliente
+    *
+    * @param  int  $id
+    */
+    public function medidores($id) {
+        return Cliente::find($id)->medidores;
+    }
+
+    /**
     * Agregar vivienda
     *
     * @param  int  $id

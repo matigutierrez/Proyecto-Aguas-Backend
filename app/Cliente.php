@@ -34,5 +34,9 @@ class Cliente extends Model
         return $this->viviendas()->detach($id);
     }
 
+    public function getMedidoresAttribute() {
+        return $this->viviendas->pluck('medidores')->collapse()->unique('id');
+    }
+
     public $timestamps = false;
 }
