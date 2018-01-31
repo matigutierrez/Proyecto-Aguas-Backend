@@ -27,11 +27,9 @@ class ClienteController extends Controller
 
         switch ($usuario->rol) {
             case 'Super Administrador':
-                return Cliente::with('viviendas')->get();
             case 'Administrador':
-                $clientes = $usuario->comite->medidores->pluck('vivienda.clientes')->collapse()->unique();
-                $clientes->pluck('viviendas');
-                return $clientes;
+                return Cliente::with('viviendas')->get();
+            
             default:
                 return [$usuario->cliente];
         }
