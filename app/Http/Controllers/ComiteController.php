@@ -100,11 +100,11 @@ class ComiteController extends Controller
     }
 
     public function clientes($id) {
-        return Comite::find($id)->medidores->pluck('vivienda.clientes')->collapse()->unique();
+        return Comite::find($id)->medidores->pluck('vivienda.clientes')->collapse()->unique('id');
     }
 
     public function viviendas($id) {
-        return Comite::find($id)->medidores->pluck('vivienda')->unique();
+        return Comite::find($id)->medidores->pluck('vivienda')->unique('id');
     }
 
     public function medidores($id) {
@@ -112,7 +112,7 @@ class ComiteController extends Controller
     }
 
     public function viviendaCliente($id) {
-        $viviendas = Comite::find($id)->medidores->pluck('vivienda')->unique();
+        $viviendas = Comite::find($id)->medidores->pluck('vivienda')->unique('id');
         $clientes = $viviendas->pluck('clientes');
         return $viviendas;
     }
