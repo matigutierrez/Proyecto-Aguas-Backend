@@ -104,4 +104,13 @@ class MedidorController extends Controller
         Medidor::destroy($id);
         return['deleted' => true];
     }
+
+    /**
+     * Obtener la vivienda de un medidor
+     *
+     * @param  int  $id
+     */
+    public function vivienda($id) {
+        return Medidor::find($id)->vivienda;
+    }
 }

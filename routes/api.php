@@ -75,6 +75,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('medidor', 'MedidorController');
 
+	Route::get('medidor/{id}/vivienda', 'MedidorController@vivienda');
+
 	Route::apiResource('estadomedidor', 'EstadoMedidorController');
 
 	Route::get('logusuario', 'AuthController@getAuthenticatedUser');
