@@ -25,8 +25,10 @@ class CreateRegistroMensualClienteTable extends Migration
             $table->integer('cargo_fijo');
             $table->integer('alcantarillado');
             $table->integer('vivienda_id')->unsigned();
+            $table->integer('medidor_id')->unsigned();
             $table->integer('mes_id')->unsigned();
             $table->foreign('vivienda_id')->references('id')->on('vivienda')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('medidor_id')->references('id')->on('medidor')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('mes_id')->references('id')->on('mes')->onDelete('cascade')->onUpdate('cascade');
         });
     }

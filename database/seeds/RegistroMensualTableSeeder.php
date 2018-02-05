@@ -21,6 +21,7 @@ class RegistroMensualTableSeeder extends Seeder
           'cargo_fijo' => '0',
           'alcantarillado' => '102',
           'vivienda_id' => '1',
+          'medidor_id' => '1',
           'mes_id' => '11'
         ]);
     }

@@ -15,7 +15,7 @@ class RegistroMensualController extends Controller
      */
     public function index()
     {
-        return RegistroMensual::with(['vivienda', 'mes'])->get();
+        return RegistroMensual::with(['vivienda', 'medidor', 'mes'])->get();
     }
 
     /**
@@ -48,6 +48,7 @@ class RegistroMensualController extends Controller
               'cargo_fijo' => $request->cargo_fijo,
               'alcantarillado' => $request->alcantarillado,
               'vivienda_id' => $request->vivienda_id,
+              'medidor_id' => $request->medidor_id,
               'mes_id' => $request->mes_id
             ]);
 
@@ -69,7 +70,7 @@ class RegistroMensualController extends Controller
      */
     public function show($id)
     {
-        return RegistroMensual::with(['vivienda', 'mes'])->where('id', $id)->first();
+        return RegistroMensual::with(['vivienda_id', 'medidor', 'mes'])->where('id', $id)->first();
     }
 
     /**
