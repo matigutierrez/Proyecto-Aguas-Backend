@@ -27,7 +27,8 @@ class ViviendaController extends Controller
             case 'Super Administrador':
                 return Vivienda::all();
             case 'Administrador':
-                return $usuario->comite->medidores->pluck('vivienda');
+                return Vivienda::all();
+                //return $usuario->comite->medidores->pluck('vivienda');
             default:
                 $cliente = Cliente::find($auth->getAuthenticatedUser()->cliente_id);
             

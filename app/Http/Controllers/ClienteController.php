@@ -28,7 +28,8 @@ class ClienteController extends Controller
         switch ($usuario->rol) {
             case 'Super Administrador':
             case 'Administrador':
-                return Cliente::with('viviendas')->get();
+                return Cliente::all(); 
+                //return Cliente::with('viviendas')->get();
             
             default:
                 return [$usuario->cliente];
