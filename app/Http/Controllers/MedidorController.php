@@ -113,4 +113,13 @@ class MedidorController extends Controller
     public function vivienda($id) {
         return Medidor::find($id)->vivienda;
     }
+
+    /**
+     * Obtener lectura mensual de un medidor
+     *
+     * @param  int  $id
+     */
+    public function registrosmensuales($id) {
+        return Medidor::find($id)->registrosMensuales;
+    }
 }

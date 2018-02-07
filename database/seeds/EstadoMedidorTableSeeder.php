@@ -12,7 +12,8 @@ class EstadoMedidorTableSeeder extends Seeder
     public function run()
     {
         DB::table('estado_medidor')->insert([
-          'des_estado_medidor' => 'Funcionando 100%'
+          array('des_estado_medidor' => 'Funcionando 100%'),
+          array('des_estado_medidor' => 'Mal funcionamiento')
         ]);
     }
 }

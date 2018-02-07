@@ -16,12 +16,12 @@ class RegistroMensual extends Model
         return $this->belongsTo('App\Vivienda');
     }
 
-    public function medidor() {
-    	return $this->belongsTo('App\Medidor');
-    }
-
     public function mes() {
     	return $this->belongsTo('App\Mes');
+    }
+
+    public function medidor() {
+        return $this->belongsTo('App\Medidor', 'medidor_id');
     }
 
     public $timestamps = false;

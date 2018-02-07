@@ -28,5 +28,9 @@ class Medidor extends Model
         return $this->belongsTo('App\Comite', 'comite_id');
     }
 
+    public function registrosMensuales() {
+        return $this->hasMany('App\RegistroMensual', 'medidor_id');
+    }
+
     public $timestamps = false;
 }

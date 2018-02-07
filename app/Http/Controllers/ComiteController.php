@@ -108,7 +108,7 @@ class ComiteController extends Controller
     }
 
     public function medidores($id) {
-        return Medidor::where('comite_id', $id)->with('vivienda')->get();
+        return Medidor::where('comite_id', $id)->with('vivienda', 'estadoMedidor', 'comite')->get();
     }
 
     public function viviendaCliente($id) {

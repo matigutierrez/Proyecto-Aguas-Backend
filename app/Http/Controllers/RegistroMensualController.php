@@ -44,7 +44,7 @@ class RegistroMensualController extends Controller
               'saldo_pagado' => $request->saldo_pagado,
               'consumo' => $request->consumo,
               'valor_pagar' => $request->valor_pagar,
-              'lectura_anterior' => $lectura->lectura_anterior,
+              'lectura_anterior' => $request->lectura_anterior,
               'cargo_fijo' => $request->cargo_fijo,
               'alcantarillado' => $request->alcantarillado,
               'vivienda_id' => $request->vivienda_id,
@@ -70,7 +70,7 @@ class RegistroMensualController extends Controller
      */
     public function show($id)
     {
-        return RegistroMensual::with(['vivienda_id', 'medidor', 'mes'])->where('id', $id)->first();
+        return RegistroMensual::with(['vivienda', 'medidor', 'mes'])->where('id', $id)->first();
     }
 
     /**
