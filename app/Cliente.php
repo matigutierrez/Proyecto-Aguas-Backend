@@ -12,7 +12,7 @@ class Cliente extends Model
 
     protected $primaryKey = "id";
 
-    protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'residencia'];
+    protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'estado_cliente', 'subsidio_id'];
 
     protected $appends = ['medidores'];
     
@@ -22,6 +22,10 @@ class Cliente extends Model
 
     public function viviendasCliente() {
         return $this->hasMany('App\ViviendaCliente');
+    }
+
+    public function subsidio() {
+      return $this->belongsTo('App\Subsidio');
     }
 
     public function viviendas() {

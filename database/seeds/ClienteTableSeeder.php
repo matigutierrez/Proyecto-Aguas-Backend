@@ -18,7 +18,8 @@ class ClienteTableSeeder extends Seeder
           'apellido_mater' => 'Luco',
           'telefono' => '487392',
           'email' => 'mgutierrezl1402@ufromail.cl',
-          'residencia' => 'Vilcún'         
+          'estado_cliente' => true,
+          'subsidio_id' => 1   
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '78954562',
@@ -27,7 +28,8 @@ class ClienteTableSeeder extends Seeder
           'apellido_mater' => 'Gonzáles',
           'telefono' => '89563456',
           'email' => 'juan@hotmail.cl',
-          'residencia' => 'Temuco'         
+          'estado_cliente' => true,
+          'subsidio_id' => 1       
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '185044890',
@@ -36,7 +38,8 @@ class ClienteTableSeeder extends Seeder
           'apellido_mater' => 'Mendoza',
           'telefono' => '+56947149803',
           'email' => 'danielcoronado@hotmail.cl',
-          'residencia' => 'Pitrufquén'         
+          'estado_cliente' => true,
+          'subsidio_id' => 1        
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '124567898',
@@ -45,7 +48,8 @@ class ClienteTableSeeder extends Seeder
           'apellido_mater' => 'Sandoval',
           'telefono' => '+56945456478',
           'email' => 'carlos@hotmail.cl',
-          'residencia' => 'Pitrufquén'         
+          'estado_cliente' => true,
+          'subsidio_id' => 1        
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '195643210',
@@ -54,7 +58,8 @@ class ClienteTableSeeder extends Seeder
           'apellido_mater' => 'De La Fuente',
           'telefono' => '+56945678912',
           'email' => 'm.hermosilla03o@ufromail.cl',
-          'residencia' => 'Temuco'         
+          'estado_cliente' => true,
+          'subsidio_id' => 1    
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '201234562',
@@ -62,8 +67,9 @@ class ClienteTableSeeder extends Seeder
           'apellido_pater' => 'Retamal',
           'apellido_mater' => 'De La Fuente',
           'telefono' => '+56978965489',
-          'email' => 'julio@ufromail.cl',
-          'residencia' => 'Temuco'         
+          'email' => 'julio@ufromail.cl', 
+          'estado_cliente' => true,
+          'subsidio_id' => 1        
         ]);
     }
 }

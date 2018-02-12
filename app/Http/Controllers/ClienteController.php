@@ -63,7 +63,8 @@ class ClienteController extends Controller
               'apellido_mater' => $request->apellido_mater,
               'telefono' => $request->telefono,
               'email' => $request->email,
-              'residencia' => $request->residencia
+              'estado_cliente' => $request->estado_cliente,
+              'subsidio' => $request->subsidio,
             ]);
 
             return \Response::json($idCliente, 200);

@@ -67,8 +67,7 @@ class ViviendaController extends Controller
             $idVivienda = Vivienda::insert([
               'direccion' => $request->direccion,
               'estado_id' => $request->estado_id,
-              'comuna_id' => $request->comuna_id,
-              'subsidio_id' => $request->subsidio_id
+              'comuna_id' => $request->comuna_id
             ]);
 
             return \Response::json($idVivienda, 200);

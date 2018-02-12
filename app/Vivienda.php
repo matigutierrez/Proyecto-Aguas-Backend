@@ -10,7 +10,7 @@ class Vivienda extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['direccion', 'estado_id', 'comuna_id', 'subsidio_id'];
+    protected $fillable = ['direccion', 'estado_id', 'comuna_id'];
 
     public function estado(){
       return $this->belongsTo('App\Estado');
@@ -18,10 +18,6 @@ class Vivienda extends Model
 
     public function comuna() {
       return $this->belongsTo('App\Comuna');
-    }
-
-    public function subsidio() {
-      return $this->belongsTo('App\Subsidio');
     }
 
     public function clientes() {

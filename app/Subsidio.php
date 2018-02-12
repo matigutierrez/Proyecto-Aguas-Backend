@@ -12,8 +12,8 @@ class Subsidio extends Model
 
     protected $fillable = ['des_subsidio'];
 
-    public function viviendas() {
-    	return $this->hasMany('App\Vivienda');
+    public function clientes() {
+    	return $this->hasMany('App\Cliente');
     }
 
     public $timestamps = false;

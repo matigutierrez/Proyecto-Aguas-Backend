@@ -21,7 +21,9 @@ class CreateClienteTable extends Migration
             $table->string('apellido_mater',20);
             $table->string('telefono',20);
             $table->string('email',40);
-            $table->string('residencia',50);
+            $table->boolean('estado_cliente');
+            $table->integer('subsidio_id')->unsigned();
+            $table->foreign('subsidio_id')->references('id')->on('subsidio')->onDelete('cascade')->onUpdate('cascade');
             $table->unique('rut_cliente');
         });
     }
