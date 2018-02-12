@@ -61,6 +61,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('mes', 'MesController');
 
+	Route::apiResource('parametros', 'ParametrosController');
+
 	Route::apiResource('boletaemitida', 'BoletaEmitidaController');
 
 	Route::apiResource('abonoboleta', 'AbonoBoletaController');
