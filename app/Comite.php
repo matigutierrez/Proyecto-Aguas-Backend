@@ -46,7 +46,7 @@ class Comite extends Model
     public function getClientesAttribute() {
         $clientesAgregados = $this->clientesAgregados;
         $viviendas = $this->medidores->pluck('vivienda')->unique('id');
-        $clientes = $viviendas->pluck('clientes')->unique('id')->collapse();
+        $clientes = $viviendas->pluck('clientes')->collapse()->unique('id');
 
         return $clientes->merge($clientesAgregados)->unique('id');
     }
