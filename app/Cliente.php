@@ -15,10 +15,6 @@ class Cliente extends Model
     protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'estado_cliente', 'subsidio_id'];
 
     protected $appends = ['medidores'];
-
-    public function parametros() {
-        return $this->hasOne('App\Parametros');
-    }
     
     public function usuarios() {
         return $this->hasMany('App\Usuario', 'cliente_id');

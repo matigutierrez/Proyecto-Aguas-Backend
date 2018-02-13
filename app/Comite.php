@@ -35,4 +35,8 @@ class Comite extends Model
     	return $this->hasMany('App\Medidor', 'comite_id');
     }
 
+    public function parametros() {
+        return $this->hasOne('App\Parametros');
+    }
+
 }
