@@ -39,4 +39,24 @@ class Comite extends Model
         return $this->hasOne('App\Parametros');
     }
 
+    public function clientesAgregados() {
+        return $this->belongsToMany('App\Cliente', 'comite_cliente', 'comite_id', 'cliente_id');
+    }
+    
+    public function getClientesAttribute() {
+        $clientesAgregados = $this->clientesAgregados;
+        $viviendas = $this->medidores->pluck('vivienda')->unique('id');
+        $clientes = $viviendas->pluck('clientes')->unique('id')->collapse();
+
+        return $clientes->merge($clientesAgregados)->unique('id');
+    }
+
+    public function addCliente($id) {
+        $this->clientesAgregados()->attach($id);
+    }
+
+    public function removeCliente($id) {
+        $this->clientesAgregados()->dettach($id);
+    }
+
 }

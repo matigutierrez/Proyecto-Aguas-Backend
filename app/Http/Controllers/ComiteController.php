@@ -17,12 +17,13 @@ class ComiteController extends Controller
      */
     public function index(AuthController $auth)
     {
-        //return Comite::all();
     	$usuario = Usuario::where('id', $auth->getAuthenticatedUser()->id)->first();
 
-    	// if ( $usuario->superadmin ) {
-        return Comite::with('comuna')->get();
-        // }
+    	if ( $usuario->superadmin ) {
+            return Comite::with('comuna')->get();
+        }
+
+        return [];
     }
 
     /**
@@ -100,7 +101,7 @@ class ComiteController extends Controller
     }
 
     public function clientes($id) {
-        return Comite::find($id)->medidores->pluck('vivienda.clientes')->collapse()->unique('id');
+        return Comite::find($id)->clientes;
     }
 
     public function viviendas($id) {
@@ -115,6 +116,14 @@ class ComiteController extends Controller
         $viviendas = Comite::find($id)->medidores->pluck('vivienda')->unique('id');
         $clientes = $viviendas->pluck('clientes');
         return $viviendas;
+    }
+
+    public function addCliente($id, $idcliente) {
+        Comite::find($id)->addCliente($idcliente);
+    }
+
+    public function removeCliente($id, $idcliente) {
+        Comite::find($id)->removeCliente($idcliente);
     }
 
 }

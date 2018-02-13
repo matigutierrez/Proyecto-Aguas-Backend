@@ -15,6 +15,10 @@ class Cliente extends Model
     protected $fillable = ['rut_cliente', 'nombre', 'apellido_pater', 'apellido_mater', 'telefono', 'email', 'estado_cliente', 'subsidio_id'];
 
     protected $appends = ['medidores'];
+
+    public function comites() {
+        return $this->belongsToMany('App\Comite', 'comite_cliente', 'cliente_id', 'comite_id');
+    }
     
     public function usuarios() {
         return $this->hasMany('App\Usuario', 'cliente_id');
