@@ -41,6 +41,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::get('comite/{id}/removecliente/{idcliente}', 'ComiteController@removeCliente');
 
+	Route::get('comite/{id}/parametros', 'ComiteController@parametros');
+
 	Route::get('comite/{id}/viviendas', 'ComiteController@viviendas');
 
 	Route::get('comite/{id}/medidores', 'ComiteController@medidores');

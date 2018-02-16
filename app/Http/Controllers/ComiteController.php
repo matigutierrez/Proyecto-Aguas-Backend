@@ -126,4 +126,8 @@ class ComiteController extends Controller
         Comite::find($id)->removeCliente($idcliente);
     }
 
+    public function parametros($id) {
+        return Comite::find($id)->parametros;
+    }
+
 }
