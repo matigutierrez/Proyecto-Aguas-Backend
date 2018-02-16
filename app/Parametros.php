@@ -23,7 +23,7 @@ class Parametros extends Model
     	'multa_adulteracion'
     ];
 
-    protected $timetamps = false;
+    public $timestamps = false;
 
     public function comite() {
     	return $this->belongsTo('App\Comite');
