@@ -15,7 +15,7 @@ class CreateParametrosTable extends Migration
     {
         Schema::create('parametros', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('comite_id')->unsigned();
+            $table->integer('comite_id')->unsigned()->unique();
             $table->foreign('comite_id')->references('id')->on('comite')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('valor_metro');
             $table->integer('valor_maximo_descuento');
