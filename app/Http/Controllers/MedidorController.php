@@ -122,4 +122,8 @@ class MedidorController extends Controller
     public function registrosmensuales($id) {
         return Medidor::find($id)->registrosMensuales;
     }
+
+    public function ultimoRegistro($id){
+        return Medidor::find($id)->registrosMensuales->last();
+    }
 }
