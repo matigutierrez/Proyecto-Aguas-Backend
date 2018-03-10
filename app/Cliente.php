@@ -24,10 +24,6 @@ class Cliente extends Model
         return $this->hasMany('App\Usuario', 'cliente_id');
     }
 
-    public function viviendasCliente() {
-        return $this->hasMany('App\ViviendaCliente');
-    }
-
     public function subsidio() {
       return $this->belongsTo('App\Subsidio');
     }
