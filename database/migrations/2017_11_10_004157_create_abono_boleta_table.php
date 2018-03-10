@@ -18,7 +18,6 @@ class CreateAbonoBoletaTable extends Migration
             $table->integer('cod_abono');
             $table->timestamp('fecha');
             $table->integer('monto_abonado');
-            $table->unique('cod_abono');
             $table->integer('boleta_emitida_id')->unsigned();
             $table->foreign('boleta_emitida_id')->references('id')->on('boleta_emitida')->onDelete('cascade')->onUpdate('cascade');
         });
