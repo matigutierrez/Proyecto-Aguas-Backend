@@ -33,7 +33,6 @@ class CreateBoletaEmitidaTable extends Migration
             $table->integer('multa_adulteracion');
             $table->integer('total_abono');
             $table->integer('paga_boleta');
-            $table->unique('nro_boleta');
             $table->integer('medidor_id')->unsigned();
             $table->foreign('medidor_id')->references('id')->on('medidor')->onDelete('cascade')->onUpdate('cascade');
         });
