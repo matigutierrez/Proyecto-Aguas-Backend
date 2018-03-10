@@ -15,7 +15,7 @@ class CreateBoletaEmitidaTable extends Migration
     {
         Schema::create('boleta_emitida', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('nro_boleta');
+            $table->integer('nro_boleta')->nullable();
             $table->string('nombre_cliente', 70);
             $table->string('domicilio', 30);
             $table->integer('saldo');
