@@ -11,6 +11,8 @@ class Medidor extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = ['num_medidor', 'marca_medidor', 'lectura_inicial', 'vivienda_id', 'estado_medidor_id', 'comite_id'];
+    
+    protected $appends = ['clientes'];
 
     public function estadoMedidor() {
     	return $this->belongsTo('App\EstadoMedidor');
@@ -30,6 +32,10 @@ class Medidor extends Model
 
     public function registrosMensuales() {
         return $this->hasMany('App\RegistroMensual', 'medidor_id');
+    }
+    
+    public function getClientesAttribute() {
+        return $this->vivienda->clientes;
     }
 
     public $timestamps = false;
