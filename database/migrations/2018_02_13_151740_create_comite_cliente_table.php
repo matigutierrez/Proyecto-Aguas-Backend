@@ -18,6 +18,7 @@ class CreateComiteClienteTable extends Migration
             $table->foreign('comite_id')->references('id')->on('comite')->onDelete('cascade')->onUpdate('cascade');
             $table->integer('cliente_id')->unsigned();
             $table->foreign('cliente_id')->references('id')->on('cliente')->onDelete('cascade')->onUpdate('cascade');
+            $table->primary(['comite_id', 'cliente_id']);
         });
     }
 
