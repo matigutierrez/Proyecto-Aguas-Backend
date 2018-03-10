@@ -85,9 +85,11 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::get('medidor/{id}/vivienda', 'MedidorController@vivienda');
 
-	Route::get('medidor/{id}/registrosmensuales', 'MedidorController@registrosmensuales');
+	Route::get('medidor/{id}/registrosmensuales', 'MedidorController@registrosMensuales');
 
 	Route::get('medidor/{id}/ultimoregistro', 'MedidorController@ultimoRegistro');
+	
+	Route::get('medidor/{id}/clientes', 'MedidorController@clientes');
 
 	Route::apiResource('estadomedidor', 'EstadoMedidorController');
 
