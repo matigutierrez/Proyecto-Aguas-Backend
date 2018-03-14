@@ -12,12 +12,10 @@ class FirmaComite extends Model
 
     protected $fillable = ['comite_id', 'fecha_edicion'];
 
-    /*
     protected $hidden = ['firma'];
 
     const CREATED_AT = 'fecha_edicion';
     const UPDATED_AT = 'fecha_edicion';
-    */
 
     public function comite() {
         return $this->belongsTo('App\Comite', 'comite_id');
