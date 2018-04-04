@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Medidor;
+use DB;
 
 class MedidorController extends Controller
 {
@@ -127,8 +128,16 @@ class MedidorController extends Controller
         return Medidor::find($id)->registrosMensuales->last();
     }
     
-    public function clientes($id) {
-        return Medidor::find($id)->clientes;
+    public function clienteMedidor($id){
+        $cliente = DB::table('medidor')
+            ->join('vivienda', 'medidor.vivienda_id', '=', 'vivienda.id')
+            ->join('vivienda_cliente', 'vivienda.id', '=', 'vivienda_cliente.vivienda_id')
+            ->join('cliente', 'vivienda_cliente.cliente_id', '=', 'cliente.id')
+            ->select('cliente.*')
+            ->where('medidor.id', $id)
+            ->get();
+
+        return \Response::json($cliente);
     }
     
 }
