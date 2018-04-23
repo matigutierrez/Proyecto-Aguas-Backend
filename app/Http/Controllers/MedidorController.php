@@ -135,7 +135,9 @@ class MedidorController extends Controller
             ->join('cliente', 'vivienda_cliente.cliente_id', '=', 'cliente.id')
             ->select('cliente.*')
             ->where('medidor.id', $id)
-            ->get();
+            ->orderBy('vivienda_cliente.fecha_adquisicion', 'desc')
+            ->take(1)->get()->first();
+            //->get();
 
         return \Response::json($cliente);
     }
