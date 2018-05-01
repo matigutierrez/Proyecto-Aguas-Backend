@@ -98,3 +98,5 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 Route::post('login', 'AuthController@authenticate');
 
+Route::get('boletaemitida/{id}/pdf', 'BoletaEmitidaController@pdf');
+

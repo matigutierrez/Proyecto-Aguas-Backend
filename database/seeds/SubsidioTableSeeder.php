@@ -12,7 +12,18 @@ class SubsidioTableSeeder extends Seeder
     public function run()
     {
         DB::table('subsidio')->insert([
-          'des_subsidio' => '10.000'
+          'des_subsidio' => 'subsidio 1',
+          'subsidio_porcentaje' => 10,
+        ]);
+
+        DB::table('subsidio')->insert([
+          'des_subsidio' => 'subsidio 2',
+          'subsidio_porcentaje' => 20,
+        ]);
+
+        DB::table('subsidio')->insert([
+          'des_subsidio' => 'subsidio 3',
+          'subsidio_porcentaje' => 30,
         ]);
     }
 }

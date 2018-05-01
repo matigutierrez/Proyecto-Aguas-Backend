@@ -39,7 +39,7 @@ class ClienteTableSeeder extends Seeder
           'telefono' => '+56947149803',
           'email' => 'danielcoronado@hotmail.cl',
           'estado_cliente' => true,
-          'subsidio_id' => 1        
+          'subsidio_id' => 2        
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '124567898',
@@ -49,7 +49,7 @@ class ClienteTableSeeder extends Seeder
           'telefono' => '+56945456478',
           'email' => 'carlos@hotmail.cl',
           'estado_cliente' => true,
-          'subsidio_id' => 1        
+          'subsidio_id' => 2        
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '195643210',
@@ -59,7 +59,7 @@ class ClienteTableSeeder extends Seeder
           'telefono' => '+56945678912',
           'email' => 'm.hermosilla03o@ufromail.cl',
           'estado_cliente' => true,
-          'subsidio_id' => 1    
+          'subsidio_id' => 3    
         ]);
         DB::table('cliente')->insert([
           'rut_cliente' => '201234562',
@@ -69,7 +69,7 @@ class ClienteTableSeeder extends Seeder
           'telefono' => '+56978965489',
           'email' => 'julio@ufromail.cl', 
           'estado_cliente' => true,
-          'subsidio_id' => 1        
+          'subsidio_id' => 3        
         ]);
     }
 }

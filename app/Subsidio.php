@@ -10,7 +10,7 @@ class Subsidio extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['des_subsidio'];
+    protected $fillable = ['des_subsidio', 'subsidio_porcentaje'];
 
     public function clientes() {
     	return $this->hasMany('App\Cliente');

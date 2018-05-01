@@ -1,4 +1,3 @@
-<!doctype html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -14,34 +13,94 @@
 		</style>
 	</head>
 	<body>
-		<h4 style="font-size: 70%; line-height: 50%;">NOMBRE EMPRESA</h3>
+		<h4 style="font-size: 50%; line-height: 50%;">NOMBRE COMITE</h4>
 		<table style="text-align: left; padding-bottom: 2px; padding-left: 0px">
 			<tbody>
 				<tr>
-					<td width="25%"><p>RUT:</p></td>
-					<td><p>{rut empresa}</p></td>
-				</tr>
-				<tr>
-					<td><p>DIRECCION:</p></td>
-					<td><p>{direccion empresa}</p></td>
-				</tr>
-				<tr>
-					<td><p>GIRO:</p></td>
-					<td><p>{giro empresa}</p></td>
-				</tr>
-				<tr>
-					<td><p>TELEFONO:</p></td>
-					<td><p>{telefono empresa}</p></td>
+					<td width="25%"><p>Comuna:</p></td>
+					<td><p>(nombre comuna)</p></td>
 				</tr>
 			</tbody>
 		</table>
 		<h4 style="font-size: 60%; text-align: center; line-height: 200%">
-			BOLETA ELECTRONICA N° {numero}
+			BOLETA ELECTRONICA N° {{ $boleta->nro_boleta }}
 		</h4>
-		<p style="font-size: 55%; text-align: center; ">
-			S.I.I {COMUNA}<br>
-			FECHA EMISION: {fecha}
+		<p class="col" style="font-size: 5px;">
+			FECHA DE EMISIÓN: (fecha)
 		</p>
+		<h4 style="font-size: 50%; line-height: 50%;">DATOS DEL CLIENTE</h4>
+		<table style="text-align: left; padding-bottom: 2px; padding-left: 0px">
+			<tbody>
+				<tr>
+					<td width="25%"><p>Nombre:</p></td>
+					<td><p>{{ $boleta->nombre_cliente }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Domicilio:</p></td>
+					<td><p>{{ $boleta->domicilio }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Medidor:</p></td>
+					<td><p>{{ $boleta->medidor->num_medidor }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Subsidio Cliente:</p></td>
+					<td><p>{{ $boleta->subsidio }}%</p></td>
+				</tr>
+			</tbody>
+		</table><br>
+		<h4 style="font-size: 50%; line-height: 50%;">DATOS DE LECTURA</h4>
+		<table style="text-align: left; padding-bottom: 2px; padding-left: 0px">
+			<tbody>
+				<tr>
+					<td width="25%"><p>Lectura Anterior:</p></td>
+					<td><p>{{ $boleta->lectura_anterior }} m3</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Lectura Actual:</p></td>
+					<td><p>{{ $boleta->lectura_actual }} m3</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Consumo:</p></td>
+					<td><p>{{ $boleta->consumo }} m3</p></td>
+				</tr>
+			</tbody>
+		</table><br>
+		<!--<h4 style="font-size: 70%; line-height: 50%;">CARGOS FIJOS</h4>
+		<table style="text-align: left; padding-bottom: 2px; padding-left: 0px">
+			<tbody>
+				<tr>
+					<td width="25%"><p>Cargo Fijo:</p></td>
+					<td><p>${{ $boleta->cargo_fijo }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Alcantarillado:</p></td>
+					<td><p>${{ $boleta->alcantarillado }}</p></td>
+				</tr>
+			</tbody>
+		</table>
+		<h4 style="font-size: 70%; line-height: 50%;">COBROS</h4>
+		<table style="text-align: left; padding-bottom: 2px; padding-left: 0px">
+			<tbody>
+				<tr>
+					<td width="25%"><p>Saldo Anterior:</p></td>
+					<td><p>${{ $boleta->saldo }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Monto a Pagar:</p></td>
+					<td><p>${{ $boleta->monto_pagar }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Total Abonos:</p></td>
+					<td><p>${{ $boleta->total_abono }}</p></td>
+				</tr>
+				<tr>
+					<td width="25%"><p>Total a Pagar:</p></td>
+					<td><p>${{ $boleta->total }}</p></td>
+				</tr>
+			</tbody>
+		</table>-->
+		<br>
 		<table style="padding-top: 3px">
 			<tbody>
 				<tr>
@@ -52,18 +111,16 @@
 		<table style="width: 100%; padding-bottom: 3px">
 			<tbody>
 				<tr>
-					<td width="15%"><p class="col">CODIGO</p></td>
-					<td width="25%"><p class="col">DESCRIPCION</p></td>
-					<td width="25%"><p class="col">CANTIDAD x PRECIO</p></td>
-					<td width="18%"><p class="col">VALOR</p></td>
-					<td width="17%"><p class="col">DESC.</p></td>
+					<td width="25%"><p class="col" style="font-size: 4px;">SALDO ANTERIOR</p></td>
+					<td width="25%"><p class="col" style="font-size: 4px;">TOTAL ABONOS</p></td>
+					<td width="25%"><p class="col" style="font-size: 4px;">CARGO FIJO</p></td>
+					<td width="25%"><p class="col" style="font-size: 4px;">ALCANTARILLADO</p></td>
 				</tr>
 				<tr>
-					<td><p class="item">{Codigo}</p></td>
-					<td><p class="item">{Descr.}</p></td>
-					<td><p class="item">{cant} x ${precio}</p></td>
-					<td><p class="item">${Valor}</p></td>
-					<td><p class="item">${Desc.}</p></td>
+					<td><p class="item">${{ $boleta->saldo }}</p></td>
+					<td><p class="item">${{ $boleta->total_abono }}</p></td>
+					<td><p class="item">${{ $boleta->cargo_fijo }}</p></td>
+					<td><p class="item">${{ $boleta->alcantarillado }}</p></td>
 				</tr>
 			</tbody>
 		</table>
@@ -77,12 +134,17 @@
 		<table style="width: 100%; padding-bottom: 3px">
 			<tbody>
 				<tr>
-					<td width="75%"><p class="col" style="text-align: right">SUB TOTAL:</p></td>
-					<td width="25%"><p class="item">$???</p></td>
+					<td width="75%"><p class="col" style="text-align: right">MONTO A PAGAR:</p></td>
+					<td width="25%"><p class="item">${{ $boleta->monto_pagar }}</p></td>
 				</tr>
 				<tr>
-					<td><p class="col" style="text-align: right">TOTAL:</p></td>
-					<td><p class="item">$???</p></td>
+					<td><p class="col" style="text-align: right">TOTAL A PAGAR:</p></td>
+					<td><p class="item">${{ $boleta->total }}</p></td>
+				</tr>
+				<br>
+				<tr>
+					<td width="30%"><p class="col" style="font-size: 5px;">FECHA DE PAGO:</p></td>
+					<td><p class="item">{{ $boleta->fecha_pago }}</p></td>
 				</tr>
 			</tbody>
 		</table>
@@ -93,9 +155,5 @@
 				</tr>
 			</tbody>
 		</table>
-		<p style="text-align: center;">
-			<img src="https://user-images.githubusercontent.com/5008893/36402832-d803ec50-15bf-11e8-9803-b54e23c73cd7.png" width="140" height="80" />
-		</p>
-		<p style="font-size: 45%; text-align: center;">Timbre Electr&oacute;nico SII</p>
 	</body>
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\BoletaEmitida;
+use PDF;
 
 class BoletaEmitidaController extends Controller
 {
@@ -86,5 +87,27 @@ class BoletaEmitidaController extends Controller
     {
         BoletaEmitida::destroy($id);
         return['deleted' => true];
+    }
+
+    public function pdf($id)
+    {
+        $boleta = BoletaEmitida::find($id);
+        
+        //$view = \View::make('boleta',['boleta' => $boleta]);
+        $view = view('boleta',['boleta' => $boleta]);
+        $HTML = $view->render();
+        PDF::SetPrintHeader(false);
+        PDF::SetMargins(3, 0, 3, true);
+        PDF::setJPEGQuality(100);
+        PDF::setTextShadow(['enabled' => false]);
+        PDF::AddPage('P', [75, 120]);
+        PDF::SetTitle("Boleta Electrónica");
+        PDF::writeHTML($HTML, true, false, true, false, '');
+
+        PDF::Output('boleta.pdf', 'I');
+
+        /*return view('boleta.show', [
+            'boleta' => $boleta,
+        ]);*/
     }
 }
