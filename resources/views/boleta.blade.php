@@ -91,10 +91,6 @@
 					<td><p>${{ $boleta->monto_pagar }}</p></td>
 				</tr>
 				<tr>
-					<td width="25%"><p>Total Abonos:</p></td>
-					<td><p>${{ $boleta->total_abono }}</p></td>
-				</tr>
-				<tr>
 					<td width="25%"><p>Total a Pagar:</p></td>
 					<td><p>${{ $boleta->total }}</p></td>
 				</tr>
@@ -112,13 +108,11 @@
 			<tbody>
 				<tr>
 					<td width="25%"><p class="col" style="font-size: 4px;">SALDO ANTERIOR</p></td>
-					<td width="25%"><p class="col" style="font-size: 4px;">TOTAL ABONOS</p></td>
 					<td width="25%"><p class="col" style="font-size: 4px;">CARGO FIJO</p></td>
 					<td width="25%"><p class="col" style="font-size: 4px;">ALCANTARILLADO</p></td>
 				</tr>
 				<tr>
 					<td><p class="item">${{ $boleta->saldo }}</p></td>
-					<td><p class="item">${{ $boleta->total_abono }}</p></td>
 					<td><p class="item">${{ $boleta->cargo_fijo }}</p></td>
 					<td><p class="item">${{ $boleta->alcantarillado }}</p></td>
 				</tr>

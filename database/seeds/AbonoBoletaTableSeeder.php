@@ -12,7 +12,6 @@ class AbonoBoletaTableSeeder extends Seeder
     public function run()
     {
         DB::table('abono_boleta')->insert([
-          'cod_abono' => '000012',
           'monto_abonado' => '50000',
           'boleta_emitida_id' => '1'
         ]);

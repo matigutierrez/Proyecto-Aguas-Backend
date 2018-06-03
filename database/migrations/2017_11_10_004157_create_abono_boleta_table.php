@@ -15,7 +15,6 @@ class CreateAbonoBoletaTable extends Migration
     {
         Schema::create('abono_boleta', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cod_abono');
             $table->timestamp('fecha');
             $table->integer('monto_abonado');
             $table->integer('boleta_emitida_id')->unsigned();

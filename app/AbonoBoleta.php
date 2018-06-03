@@ -10,7 +10,7 @@ class AbonoBoleta extends Model
 
     protected $primaryKey = 'id';
 
-    protected $fillable = ['cod_abono', 'monto_abonado', 'boleta_emitida_id'];
+    protected $fillable = ['monto_abonado', 'boleta_emitida_id'];
 
     public function boletaEmitida() {
     	return $this->belongsTo('App\BoletaEmitida');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\AbonoBoleta;
+use DB;
 
 class AbonoBoletaController extends Controller
 {
@@ -86,5 +87,12 @@ class AbonoBoletaController extends Controller
     {
         AbonoBoleta::destroy($id);
         return['deleted' => true];
+    }
+
+    public function boletaEmitida($id){
+        return AbonoBoleta::join('boleta_emitida', 'abono_boleta.boleta_emitida_id', '=', 'boleta_emitida.id')
+            ->select(DB::raw('abono_boleta.id as id_abono, abono_boleta.monto_abonado as monto_abono, boleta_emitida.id as id_boleta, boleta_emitida.medidor_id as id_medidor, boleta_emitida.nombre_cliente as nombre_cliente'))
+            ->where('abono_boleta.boleta_emitida_id', $id)
+            ->get();
     }
 }

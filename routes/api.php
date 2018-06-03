@@ -73,6 +73,8 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::apiResource('abonoboleta', 'AbonoBoletaController');
 
+	Route::get('abonoboleta/{id}/boletaemitida', 'AbonoBoletaController@boletaEmitida');
+
 	Route::post('obtenerIdRegion', 'RegionController@obtenerId');
 
 	Route::post('obtenerIdComuna', 'ComunaController@obtenerId');
