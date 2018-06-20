@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\BoletaEmitida;
+use App\Usuario;
 use PDF;
 
 class BoletaEmitidaController extends Controller
@@ -89,25 +90,28 @@ class BoletaEmitidaController extends Controller
         return['deleted' => true];
     }
 
-    public function pdf($id)
+    public function pdf($id, $token)
     {
-        $boleta = BoletaEmitida::find($id);
+        $nombre = decrypt(gzinflate(hex2bin($token)));
+        $usuario = Usuario::where('nombre_usu', $nombre)->get()->first();
         
-        //$view = \View::make('boleta',['boleta' => $boleta]);
-        $view = view('boleta',['boleta' => $boleta]);
-        $HTML = $view->render();
-        PDF::SetPrintHeader(false);
-        PDF::SetMargins(3, 0, 3, true);
-        PDF::setJPEGQuality(100);
-        PDF::setTextShadow(['enabled' => false]);
-        PDF::AddPage('P', [75, 120]);
-        PDF::SetTitle("Boleta Electrónica");
-        PDF::writeHTML($HTML, true, false, true, false, '');
+        if (isset($usuario)) {
+            if ($usuario->rol == 'Administrador') {
+                $boleta = BoletaEmitida::find($id);
+        
+                //$view = \View::make('boleta',['boleta' => $boleta]);
+                $view = view('boleta',['boleta' => $boleta]);
+                $HTML = $view->render();
+                PDF::SetPrintHeader(false);
+                PDF::SetMargins(3, 0, 3, true);
+                PDF::setJPEGQuality(100);
+                PDF::setTextShadow(['enabled' => false]);
+                PDF::AddPage('P', [75, 120]);
+                PDF::SetTitle("Boleta Electrónica");
+                PDF::writeHTML($HTML, true, false, true, false, '');
 
-        PDF::Output('boleta.pdf', 'I');
-
-        /*return view('boleta.show', [
-            'boleta' => $boleta,
-        ]);*/
+                PDF::Output('boleta.pdf', 'I');
+            }
+        }
     }
 }

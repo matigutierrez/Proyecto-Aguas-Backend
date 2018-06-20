@@ -167,26 +167,6 @@ class ClienteController extends Controller
         return $cliente;
     }
 
-    /**
-     * Generate PDF.
-     *
-     * @return PDF
-     */
-    public function generarpdf()
-    {
-        try {
-
-            $pdf = PDF::loadView('vista');
-            return $pdf->download('archivo.pdf');
-
-        }catch(\Exception $e) {
-
-            \Log::info('Error en la descarga del pdf'. $e);
-            return \Response::json('Error',500); 
-
-        }
-    }
-
      /**
      * Get Cliente
      *

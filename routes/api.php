@@ -61,8 +61,6 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 
 	Route::post('busqueda', 'ClienteController@busqueda');
 
-	Route::get('pdf','ClienteController@generarpdf');
-
 	Route::apiResource('registromensual', 'RegistroMensualController');
 
 	Route::apiResource('mes', 'MesController');
@@ -96,9 +94,11 @@ Route::group(['middleware' => ['jwt.auth']], function () {
 	Route::apiResource('estadomedidor', 'EstadoMedidorController');
 
 	Route::get('logusuario', 'AuthController@getAuthenticatedUser');
+
+	Route::get('urltoken', 'AuthController@getURLToken');
 });
 
 Route::post('login', 'AuthController@authenticate');
 
-Route::get('boletaemitida/{id}/pdf', 'BoletaEmitidaController@pdf');
+Route::get('boletaemitida/{id}/{token}/pdf', 'BoletaEmitidaController@pdf');
 
